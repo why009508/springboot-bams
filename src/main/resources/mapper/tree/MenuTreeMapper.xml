@@ -2,6 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.dao.tree.MenuTreeMapper" >
   <select id="queryTree" resultType="com.jk.pojo.tree.MenuTree">
-    select t.id,t.text,t.pid,t.url href from mean_tree t where t.pid=#{pid}
+    select t.id,t.text,t.pid,t.href from mean_tree t where t.pid=#{pid}
   </select>
 </mapper>

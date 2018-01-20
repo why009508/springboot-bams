@@ -9,7 +9,7 @@ public class MenuTree {
 
     private Integer pid;
 
-    private String url;
+    private String href;
 
     private String closed;
 
@@ -39,12 +39,12 @@ public class MenuTree {
         this.pid = pid;
     }
 
-    public String getUrl() {
-        return url;
+    public String getHref() {
+        return href;
     }
 
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
+    public void setHref(String href) {
+        this.href = href;
     }
 
     public String getClosed() {
