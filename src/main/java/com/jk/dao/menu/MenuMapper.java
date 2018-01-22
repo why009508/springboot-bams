@@ -1,17 +1,15 @@
 package com.jk.dao.menu;
 
 import com.jk.pojo.menu.Menu;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface MenuMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Menu record);
+    long queryMenuCount(@Param("menu")Menu menu);
 
-    int insertSelective(Menu record);
+    List<Menu> queryMenuPage(@Param("start") int start, @Param("end")int end, @Param("menu")Menu menu);
 
-    Menu selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Menu record);
-
-    int updateByPrimaryKey(Menu record);
+    int addMenu(Menu menu);
 }

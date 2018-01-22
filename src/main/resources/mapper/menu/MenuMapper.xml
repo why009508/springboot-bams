@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jk.dao.menu.MenuMapper" >
+    <select id="queryMenuCount" resultType="long">
+        select count(*) from menu where 1=1
+        <if test="menu.id !='' and menu.id !=null">
+            and id like CONCAT('%', #{menu.id}, '%')
+        </if>
+        <if test="menu.text !='' and menu.text !=null">
+            and text like CONCAT('%', #{menu.text}, '%')
+        </if>
+        <if test="menu.pid !='' and menu.pid !=null">
+            and pid like CONCAT('%', #{menu.pid}, '%')
+        </if>
+    </select>
 
+    <select id="queryMenuPage" resultType="com.jk.pojo.menu.Menu">
+
+        select
+        *
+        from menu where 1=1
+        <if test="menu.id !='' and menu.id !=null">
+            and id like CONCAT('%', #{menu.id}, '%')
+        </if>
+        <if test="menu.text !='' and menu.text !=null">
+            and text like CONCAT('%', #{menu.text}, '%')
+        </if>
+        <if test="menu.pid !='' and menu.pid !=null">
+            and pid like CONCAT('%', #{menu.pid}, '%')
+        </if>
+
+        limit #{start},#{end}
+
+    </select>
+
+    <insert id="addMenu">
+        INSERT into menu(text,pid) VALUES(text,pid)
+    </insert>
 </mapper>

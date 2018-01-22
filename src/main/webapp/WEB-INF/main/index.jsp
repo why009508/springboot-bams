@@ -9,29 +9,9 @@
 <head>
     <meta charset="UTF-8">
     <title>AdminLTE | Dashboard</title>
+    <jsp:include page="/inc.jsp"></jsp:include>
+
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <!-- bootstrap 3.0.2 -->
-    <link href="<%=basePath%>/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
-    <!-- Bootstrap TreeView css -->
-    <link href="<%=request.getContextPath() %>/js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
-
-    <!-- font Awesome -->
-    <link href="<%=request.getContextPath()%>/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!-- Ionicons -->
-    <link href="<%=request.getContextPath()%>/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-
-    <!-- jvectormap -->
-    <link href="<%=request.getContextPath()%>/css/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-    <!-- fullCalendar -->
-    <link href="<%=request.getContextPath()%>/css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
-    <!-- Daterange picker -->
-    <link href="<%=request.getContextPath()%>/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-    <!-- bootstrap wysihtml5 - text editor -->
-    <link href="<%=request.getContextPath()%>/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
-    <!-- Theme style -->
-    <link href="<%=basePath%>/css/AdminLTE.css" rel="stylesheet" type="text/css" />
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,6 +20,7 @@
     <!--[endif]-->
 </head>
 <body class="skin-blue">
+<!-- header logo: style can be found in header.less -->
 <!-- header logo: style can be found in header.less -->
 <header class="header">
     <a href="index.html" class="logo">
@@ -325,9 +306,9 @@
     <!-- Right side column. Contains the navbar and content of the page -->
     <aside class="right-side">
         <ul id="myTab" class="nav nav-tabs">
-            <li>
+            <%--<li>
                 <a href="#home" data-toggle="tab"> 首页</a>
-            </li>
+            </li>--%>
         </ul>
         <!--想要打开tab页内容，需要把对应的ul和要打开的内容tab放在一个div里  -->
         <div class="tab-content"></div>
@@ -336,38 +317,6 @@
 
 
 
-<!-- jQuery 2.0.2 -->
-<script src="<%=basePath%>/js/jquery.min.js"></script>
-<!-- jQuery UI 1.10.3 -->
-<script src="<%=request.getContextPath()%>/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
-<!-- Bootstrap -->
-<script src="<%=request.getContextPath()%>/js/bootstrap.min.js" type="text/javascript"></script>
-
-<!-- bootStrap TreeView -->
-<script src="<%=request.getContextPath() %>/js/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
-
-
-<!-- Sparkline -->
-<script src="<%=request.getContextPath()%>/js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-<!-- jvectormap -->
-<script src="<%=request.getContextPath()%>/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
-<script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
-<!-- fullCalendar -->
-<script src="js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
-<!-- jQuery Knob Chart -->
-<script src="js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
-<!-- daterangepicker -->
-<script src="js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
-<!-- iCheck -->
-<script src="js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
-
-<!-- AdminLTE App -->
-<script src="js/AdminLTE/app.js" type="text/javascript"></script>
-
-<%--<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="js/AdminLTE/dashboard.js" type="text/javascript"></script>--%>
 <script type="text/javascript">
     function getTreeData(){
         var tree_data = "";
@@ -396,7 +345,6 @@
                       alert("打开了");
                   }, */
                 onNodeSelected:function(event,node){
-                        alert(node.href);
                     if(node.href != null && node.href != ""){
 
                         $.ajax({
