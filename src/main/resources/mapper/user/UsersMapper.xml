@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.user.UsersMapper" >
+    <sql id="Base_Column_List" >
+        userinfoid,usergraph,userposition,userinformation,usersex,userbirdaty,userlove,useremail,userphone,
+        userqq,userwei,jobname joname,fullname fname,username uname,monintegrator jifen,monbalance money,
+        estitle etitle,estime etime,prtime ptime,prname pname,prmoney pmoney,wtime wintime,wmoney winmoney,
+        wreason winreason
+    </sql>
+    <select id="queryUserCount" resultType="long">
+        select count(*) from
+        userinfo us,users u,moneyinfo mo,jobinfo jo,present pr,winning wi,essay es
+        where
+        us.userinfoid = u.id and us.integrid = mo.monid and us.industryid = jo.id
+        and us.presentid = pr.prid and us.winningid	 = wi.wid and us.essayid = es.esid
+        <if test="fname != null and fname != ''">
+            and u.fullname=#{fname}
+        </if>
+        <if test="uname != null and uname != ''">
+            and u.username=#{uname}
+        </if>
+        <if test="joname != null and joname != ''">
+            and jo.jobname=#{joname}
+        </if>
+    </select>
+    <select id="queryUserPage" resultType="com.jk.pojo.user.UserInfo">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+       userinfo us,users u,moneyinfo mo,jobinfo jo,present pr,winning wi,essay es
+        where
+        us.userinfoid = u.id and us.integrid = mo.monid and us.industryid = jo.id
+        and us.presentid = pr.prid and us.winningid	 = wi.wid and us.essayid = es.esid
+        <if test="u.fname != null and u.fname != ''">
+            and u.fullname=#{u.fname}
+        </if>
+        <if test="u.uname != null and u.uname != ''">
+            and u.username=#{u.uname}
+        </if>
+        <if test="u.joname != null and u.joname != ''">
+            and jo.jobname=#{u.joname}
+        </if>
+        LIMIT #{s},#{e}
+    </select>
+
+    <delete id="deleteUsers">
+        delete from userinfo where userinfoid = #{userinfoid}
+    </delete>
+
+</mapper>

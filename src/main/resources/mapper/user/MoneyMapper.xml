@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.user.MoneyMapper" >
+    <sql id="Base_Column_List" >
+        monid,fullname funame,username usname,monintegrator,monbalance,monstatus
+    </sql>
+    <select id="queryIntegralCount" resultType="long">
+        select count(*) from
+        moneyinfo m,users u
+        where
+        m.userid = u.id
+        <if test="funame != null and funame != ''">
+            and u.fullname=#{funame}
+        </if>
+    </select>
+    <select id="queryIntegralPage" resultType="com.jk.pojo.user.MoneyInfo">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        moneyinfo m,users u
+        where
+        m.userid = u.id
+        <if test="mo.funame != null and mo.funame != ''">
+            and u.fullname=#{mo.funame}
+        </if>
+        LIMIT #{s},#{e}
+    </select>
+</mapper>

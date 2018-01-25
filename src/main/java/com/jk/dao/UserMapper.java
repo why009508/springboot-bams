@@ -1,6 +1,9 @@
 package com.jk.dao;
 
 import com.jk.pojo.User;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userid);
@@ -16,4 +19,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User getUserById(int id);
+
 }
+

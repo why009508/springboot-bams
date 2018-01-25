@@ -10,17 +10,9 @@
     <meta charset="UTF-8">
     <title>AdminLTE | Dashboard</title>
     <jsp:include page="/inc.jsp"></jsp:include>
-
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <!--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>-->
-    <!--[endif]-->
 </head>
 <body class="skin-blue">
-<!-- header logo: style can be found in header.less -->
 <!-- header logo: style can be found in header.less -->
 <header class="header">
     <a href="index.html" class="logo">
@@ -306,17 +298,14 @@
     <!-- Right side column. Contains the navbar and content of the page -->
     <aside class="right-side">
         <ul id="myTab" class="nav nav-tabs">
-            <%--<li>
+            <li>
                 <a href="#home" data-toggle="tab"> 首页</a>
-            </li>--%>
+            </li>
         </ul>
         <!--想要打开tab页内容，需要把对应的ul和要打开的内容tab放在一个div里  -->
         <div class="tab-content"></div>
     </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
-
-
-
 <script type="text/javascript">
     function getTreeData(){
         var tree_data = "";
@@ -345,6 +334,7 @@
                       alert("打开了");
                   }, */
                 onNodeSelected:function(event,node){
+
                     if(node.href != null && node.href != ""){
 
                         $.ajax({
