@@ -13,6 +13,17 @@ public class MenuTree {
 
     private String closed;
 
+    /*业务字段*/
+    private String href;
+
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
+    }
+
     public Integer getId() {
         return id;
     }
