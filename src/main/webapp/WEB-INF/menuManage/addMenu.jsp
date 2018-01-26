@@ -19,27 +19,33 @@
     &nbsp
 </div>
 <h3>新增/编辑菜单</h3>
-<form id="add-menu-form" method="post"  action="">
+
+<form id="add-menu-form" method="post"  action="<%=basePath%>/Menu/addMenu">
     <table align="center" cellspacing="10px" height="200px">
         <tr>
             <td>菜单名称：</td>
             <td>
-                <input type="text" class="form-control" placeholder="请输入名称" name="text">
+                <input type="text" class="form-control" placeholder="请输入名称" name="text" style="width: 350px">
             </td>
         </tr>
         <tr>
             <td>父级菜单：</td>
             <td>
-                <input type="text" class="form-control" placeholder="请输入父级菜单ID" name="pid">
-                <%--<select name="bookwriter" class="form-control">
-                    <c:forEach items="${writer}" var="w">
-                        <option value="${w.writerid}">${w.writername}</option>
-                    </c:forEach>
-                </select>--%>
+                <select class="form-control" name="pid">
+                    <option value="0">0 页面显示</option>
+                    <option value="3">3 倾听世界</option>
+                    <option value="5">5 每日一笑</option>
+
+                </select>
+
             </td>
         </tr>
         <tr>
-            <td colspan="2" align="center"><button type="button" onclick="addDept()" class="btn btn-default">提交</button></td>
+            <td colspan="2" align="center">
+                <button type="button" onclick="addMenu()" class="btn btn-default">新增</button>&nbsp&nbsp&nbsp
+                <button type="reset" onclick="closeTabs()" class="btn btn-default">清空</button>
+            </td>
+
         </tr>
     </table>
 </form>
@@ -58,40 +64,76 @@
 </div>
 
 
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 350px">
+        <div class="modal-content">
+            <div class="modal-body">新增成功，是否继续新增？</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="toMenuTabs()">退出新增</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="resetAddForm()">继续新增</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
 
 
 <script type="text/javascript">
     function toDeptTree(){
-        alert();
         $('#dlg').dialog('open')
     }
-    function addDept(){
+    //新增方法
+    function addMenu(){
         $.ajax({
-            url:'<%=basePath%>/Dept/addDept.do',
+            url:'<%=basePath%>/Menu/addMenu',
             type:'post',
-            data:$('#add-dept-form').serialize(),
+            data:$('#add-menu-form').serialize(),
             dataType:'json',
             success:function(data){
                 confirm1();
             }
         })
     }
+    //是否继续新增提示框
     function confirm1(){
-        $.messager.confirm('新增成功', '是否继续新增?', function(r){
-            if (r){
-                document.getElementById("add-dept-form").reset();
-            }else{
-                //$("#tabs").tabs("close", "新增机构");
-                window.parent.$('#tabs').tabs('close', "新增机构")
+        $('#myModal').modal({
+            keyboard: true
+        })
+
+    }
+    //继续新增重置表单
+    function resetAddForm(){
+        $('#myModal').modal({
+            keyboard: false
+        })
+        $('#add-menu-form')[0].reset()
+    }
+
+    function toMenuTabs(){
+        $('#myModal').modal({
+            keyboard: false
+        })
+        $('#add-menu-form')[0].reset();
+        $.ajax({
+            url:"<%=basePath%>/Menu/toMenuList",
+            type : "post",
+            success : function(data) {
+                //                     				添加选项卡面板
+                $.addtabs.add({
+                    id : 2,
+                    title : '菜单列表',
+                    content : data,
+                })
             }
-        });
+        })
     }
 
     $(document).ready(function(){
 
         //var zTree = $.fn.zTree.getZTreeObj("menuTree");
 
-        $.ajax({
+        /*$.ajax({
             url:"<%=request.getContextPath()%>/Dept/queryDeptTree.do",
             dataType:"json",
             type:"post",
@@ -102,7 +144,7 @@
                 alert("查询失败");
             }
 
-        })
+        })*/
 
     });
 

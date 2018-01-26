@@ -11,5 +11,11 @@ public interface MenuMapper {
 
     List<Menu> queryMenuPage(@Param("start") int start, @Param("end")int end, @Param("menu")Menu menu);
 
-    int addMenu(Menu menu);
+    int addMenu(@Param("menu")Menu menu);
+
+    Menu queryMenuById(Integer id);
+
+    int deleteMenu(Integer id);
+
+    int updateMenu(@Param("menu") Menu menu);
 }

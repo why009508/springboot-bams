@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
@@ -24,8 +25,8 @@ public class MenuController {
 
     @RequestMapping("queryMenu")
     @ResponseBody
-    public Object queryMenu(int page,int rows,Menu menu){
-        Map<String, Object> map = menuService.queryMenu(page,rows,menu);
+    public Object queryMenu(int page, int rows, Menu menu) {
+        Map<String, Object> map = menuService.queryMenu(page, rows, menu);
         return map;
     }
 
@@ -38,6 +39,28 @@ public class MenuController {
     @ResponseBody
     public Object addMenu(Menu menu) {
         int b = menuService.addMenu(menu);
+        return 1;
+    }
+
+    @RequestMapping("toEditMenu")
+    public String toEditMenu(HttpServletRequest request, Menu menu) {
+        Menu me = menuService.queryMenuById(menu);
+        request.setAttribute("me", me);
+        return "../menuManage/editMenu";
+    }
+
+    @RequestMapping("deleteMenu")
+    @ResponseBody
+    public Object deleteMenu(Menu menu) {
+        int b = menuService.deleteMenu(menu.getId());
+        return 1;
+    }
+
+
+    @RequestMapping("updateMenu")
+    @ResponseBody
+    public Object updateMenu(Menu menu) {
+        int b = menuService.updateMenu(menu);
         return 1;
     }
 }

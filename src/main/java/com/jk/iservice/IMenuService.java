@@ -34,4 +34,22 @@ public class IMenuService implements MenuService{
         int b= menuMapper.addMenu(menu);
         return 1;
     }
+
+    @Override
+    public Menu queryMenuById(Menu menu) {
+        Menu me = menuMapper.queryMenuById(menu.getId());
+        return me;
+    }
+
+    @Override
+    public int deleteMenu(Integer id) {
+        int b = menuMapper.deleteMenu(id);
+        return b;
+    }
+
+    @Override
+    public int updateMenu(Menu menu) {
+        int b = menuMapper.updateMenu(menu);
+        return b;
+    }
 }

@@ -34,6 +34,18 @@
     </select>
 
     <insert id="addMenu">
-        INSERT into menu(text,pid) VALUES(text,pid)
+        INSERT into menu(text,pid) VALUES(#{menu.text},#{menu.pid})
     </insert>
+
+    <select id="queryMenuById" resultType="com.jk.pojo.menu.Menu">
+        SELECT * FROM menu WHERE ID = #{id}
+    </select>
+
+    <delete id="deleteMenu">
+        delete from menu where id = #{id}
+    </delete>
+
+    <update id="updateMenu">
+        UPDATE menu set text=#{menu.text},pid=#{menu.pid} WHERE id=#{menu.id}
+    </update>
 </mapper>

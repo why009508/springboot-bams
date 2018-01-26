@@ -23,8 +23,8 @@
                 <label class="sr-only" for="name">名称</label>
                 <input type="text" class="form-control" id="name" placeholder="请输入名称或编号" style="width: 250px">
             </div>
-            <button type="submit" class="btn btn-default" onclick="search()">搜索</button>
-            <button type="submit" class="btn btn-default" onclick="addMenu()">新增</button>
+            <button type="button" class="btn btn-default" onclick="search()">搜索</button>
+            <button type="button" class="btn btn-default" onclick="toAddMenuTabs()">新增</button>
         </form>
 </center>
 <div>
@@ -32,43 +32,10 @@
 </div>
 
 <script type="text/javascript">
-    function addMenu(){
-        BootstrapDialog.show({
-            title: '添加新书',
-            message: $('<div></div>').load('<%=request.getContextPath()%>/Menu/toAddMenu'),
-            buttons: [{
-                label: '保存',
-                action: function(dialog) {
-
-                    $.ajax({
-                        url:'<%=request.getContextPath()%>/Menu/addMenu.do',
-                        type:"post",
-                        data:$("#add-menu-form").serialize(),
-                        dataType:"json",
-                        success:function(){
-                            alert("成功");
-                            $("#menu-table").bootstrapTable("refresh",{'pageNumber':1});
-                            dialog.close();
-                        }
-
-                    })
-                }
-            }, {
-                label: '取消',
-                action: function(dialog) {
-                    dialog.close();
-                    //更改弹框标题
-//                     dialog.setTitle('Title 2');
-                }
-            }]
-        });
-    }
 
     function search(){
         $("#menu-table").bootstrapTable("refresh",{'pageNumber':1});
     }
-
-
 
     $(function(){
         /*queryType();*/
@@ -147,12 +114,15 @@
                     valign: 'middle',
 
                 }, {
-                    field:'ID',
+                    field:'id',
                     title: '操作',
                     width: 100,
                     align: 'center',
                     valign: 'middle',
-                    formatter: actionFormatter
+                    formatter:function(value,row,index){
+                        return actionFormatter(row.id);
+                    },
+
                 }, ]
         })
     })
@@ -162,31 +132,58 @@
         var result = "";
         result += "<a href='javascript:;' class='btn btn-xs green' onclick=\"EditViewById('" + id + "', view='view')\" title='查看'><span class='glyphicon glyphicon-search'></span></a>&nbsp&nbsp&nbsp";
         result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"EditViewById('" + id + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a>&nbsp&nbsp&nbsp";
-        result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"DeleteByIds('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
+        result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"deleteMenuById('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
 
         return result;
     }
+    function deleteMenuById(id){
+        var r=confirm("确定要删除id为"+id+"的菜单吗？");
+        if(r==true){
+            $.ajax({
+                url:"<%=basePath%>/Menu/deleteMenu",
+                type : "post",
+                data:{"id":id},
+                success : function(data) {
+                    alert("删除成功");
+                    search();
+                }
+            })
+        }
 
+    }
+    function toAddMenuTabs(){
+        $.ajax({
+            url:"<%=basePath%>/Menu/toAddMenu",
+            type : "post",
+            success : function(data) {
+                //                     				添加选项卡面板
+                $.addtabs.add({
+                    id : 3,
+                    title : '新建菜单',
+                    content : data,
+                })
+            }
+        })
+    }
 
     //修改
-    /*function updateBook(id){
+    function EditViewById(id){
         alert(id);
         BootstrapDialog.show({
             title: '修改',
-            message: $('<div></div>').load('<%=request.getContextPath()%>/Book/toUpdateBook.do?bookid='+id),
+            message: $('<div style="height: 300px"></div>').load('<%=request.getContextPath()%>/Menu/toEditMenu?id='+id),
             buttons: [{
                 label: '修改',
                 action: function(dialog) {
 
                     $.ajax({
-                        url:'<%=request.getContextPath()%>/Book/updateBook.do',
+                        url:'<%=request.getContextPath()%>/Menu/updateMenu',
                         type:"post",
-                        data:$("#update-form").serialize(),
+                        data:$("#update-menu-form").serialize(),
                         dataType:"json",
                         success:function(){
                             alert("成功");
-                            $("#stu-table").bootstrapTable("refresh",{'pageNumber':1});
-                            $("#my-stu-table").bootstrapTable("refresh",{'pageNumber':1});
+                            $("#menu-table").bootstrapTable("refresh",{'pageNumber':1});
                             dialog.close();
                         }
 
@@ -201,7 +198,7 @@
                 }
             }]
         });
-    }*/
+    }
 
 </script>
 </body>

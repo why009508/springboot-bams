@@ -55,7 +55,10 @@
 <body>
 
 
-    <!-- jQuery 2.0.2 -->
+
+
+
+<!-- jQuery 2.0.2 -->
     <script src="<%=basePath%>/js/jquery.min.js"></script>
     <!-- jQuery UI 1.10.3 -->
     <script src="<%=request.getContextPath()%>/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>

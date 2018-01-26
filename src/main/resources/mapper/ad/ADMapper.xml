@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ad.ADMapper" >
+  <select id="queryADCount" resultType="long">
+    select count(*) from adtable where 1=1
+    <if test="ad.adid !='' and ad.adid !=null">
+      and adid like CONCAT('%', #{ad.adid}, '%')
+    </if>
+    <if test="ad.adname !='' and ad.adname !=null">
+      and adname like CONCAT('%', #{ad.adname}, '%')
+    </if>
+    <if test="ad.adstatus !='' and ad.adstatus !=null">
+      and adstatus=#{ad.adstatus}
+    </if>
+  </select>
+
+  <select id="queryADPage" resultType="com.jk.pojo.ad.AD">
+
+    select
+    *
+    from adtable where 1=1
+    <if test="ad.adid !='' and ad.adid !=null">
+      and adid like CONCAT('%', #{ad.adid}, '%')
+    </if>
+    <if test="ad.adname !='' and ad.adname !=null">
+      and adname like CONCAT('%', #{ad.adname}, '%')
+    </if>
+    <if test="ad.adstatus !='' and ad.adstatus !=null">
+      and adstatus=#{ad.adstatus}
+    </if>
+
+    limit #{start},#{end}
+
+  </select>
+
+  <insert id="addAD">
+    insert into adtable(adname,adtext,adimg,adstatus) VALUES(#{ad.adname},#{ad.adtext},#{ad.adimg},#{ad.adstatus})
+  </insert>
+
+  <delete id="deleteAD">
+    delete from adtable where adid=#{adid}
+  </delete>
+
+
+</mapper>
