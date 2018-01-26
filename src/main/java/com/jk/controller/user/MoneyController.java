@@ -20,7 +20,7 @@ public class MoneyController {
     public String toMoney(){
         return "../user/moneylist";
     }
-
+    // 积分余额查询
     @RequestMapping("/queryIntegralPage")
     @ResponseBody
     public Object queryIntegralPage(int page,int rows,MoneyInfo moneyInfo){

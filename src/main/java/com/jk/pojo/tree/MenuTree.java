@@ -9,19 +9,19 @@ public class MenuTree {
 
     private Integer pid;
 
-    private String href;
+    private String url;
 
     private String closed;
 
     /*业务字段*/
     private String href;
 
-    public String getHref() {
-        return href;
+    public String getUrl() {
+        return url;
     }
 
-    public void setHref(String href) {
-        this.href = href;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Integer getId() {
