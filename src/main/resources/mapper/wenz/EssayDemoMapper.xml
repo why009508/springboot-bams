@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.wenz.EssayDemoMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.pojo.wenz.EssayDemo" >
+    <id column="esid" property="esid" jdbcType="INTEGER" />
+    <result column="estitle" property="estitle" jdbcType="VARCHAR" />
+    <result column="esuid" property="esuid" jdbcType="INTEGER" />
+    <result column="escontent" property="escontent" jdbcType="VARCHAR" />
+    <result column="estime" property="estime" jdbcType="DATE" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="esimg" property="esimg" jdbcType="VARCHAR" />
+    <result column="ebeii" property="ebeii" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    esid, estitle, esuid, escontent, estime, pid, esimg,ebeii
+  </sql>
+
+  <update id="updPizhun">
+    update essay SET ebeii = 1 where esid=#{esid}
+  </update>
+
+  <update id="updnoPizhun">
+    update essay SET ebeii = 3 where esid=#{esid}
+  </update>
+
+  <select id="queryTotal" resultType="long" parameterType="com.jk.pojo.wenz.EssayDemo">
+    select count(*) from essay where 1=1
+  </select>
+
+  <select id="queryWenz" resultMap="BaseResultMap">
+    select * from essay where 1=1
+    limit #{start},#{end}
+  </select>
+
+</mapper>
