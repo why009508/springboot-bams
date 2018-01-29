@@ -41,5 +41,7 @@
     delete from adtable where adid=#{adid}
   </delete>
 
-
+  <select id="queryADById" resultType="com.jk.pojo.ad.AD">
+    SELECT * FROM adtable WHERE adid=#{adid}
+  </select>
 </mapper>

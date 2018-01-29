@@ -174,24 +174,23 @@
     function EditViewById(id){
         BootstrapDialog.show({
             title: '修改',
-            message: $('<div style="height: 300px"></div>').load('<%=request.getContextPath()%>/AD/toEditAD?id='+id),
+            message: $('<div style="height: 500px"></div>').load('<%=request.getContextPath()%>/AD/toEditAD?adid='+id),
             buttons: [{
                 label: '修改',
                 action: function(dialog) {
 
-                    /*$.ajax({
-                        url:'<%=request.getContextPath()%>/Book/updateBook.do',
+                    $.ajax({
+                        url:'<%=request.getContextPath()%>/AD/updateAD',
                         type:"post",
-                        data:$("#update-form").serialize(),
+                        data:$("#update-ad-form").serialize(),
                         dataType:"json",
                         success:function(){
-                            alert("成功");
-                            $("#stu-table").bootstrapTable("refresh",{'pageNumber':1});
-                            $("#my-stu-table").bootstrapTable("refresh",{'pageNumber':1});
+                            alert("修改成功");
+                            search();
                             dialog.close();
                         }
 
-                    })*/
+                    })
                 }
             }, {
                 label: '取消',

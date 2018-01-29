@@ -16,4 +16,6 @@ public interface ADMapper {
     int deleteAD(Integer adid);
 
     int updateAD(@Param("ad") AD ad);
+
+    AD queryADById(Integer adid);
 }

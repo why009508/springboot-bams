@@ -15,25 +15,26 @@
     <jsp:include page="/inc.jsp"></jsp:include>
 </head>
 <body>
-<div id="a" style="width:450px; float:left;">
+<div id="a" style="width:50px; float:left;">
     &nbsp
 </div>
-<h3>新增广告</h3>
+<h3>修改广告</h3>
 
-<form id="add-ad-form" method="post"  action="<%=basePath%>/AD/addAD" enctype="multipart/form-data">
+<form id="update-ad-form" method="post"  action="<%=basePath%>/AD/addAD" enctype="multipart/form-data">
     <table align="center" cellspacing="10px" height="200px">
         <tr>
             <td>广告名称：</td>
             <td>
-                <input type="text" class="form-control" placeholder="请输入名称" name="adname" style="width: 350px">
+                <input value="${addemo.adname}" type="text" class="form-control" placeholder="请输入名称" name="adname" style="width: 350px">
+                <input value="${addemo.adid}" name="adid" type="hidden">
             </td>
         </tr>
         <tr>
             <td>广告内容：</td>
             <td>
-                <textarea name="adtext" class="form-control" rows="6" placeholder="请输入内容，最多填写400字" id="booktext" onkeyup="countlength()"></textarea><td>
+                <textarea  name="adtext" class="form-control" rows="6" placeholder="请输入内容，最多填写400字" id="booktext" onkeyup="countlength()">${addemo.adtext}</textarea><td>
             <div id="count-div">还可输入<font color="red" id="countf">400</font>字</div>
-            <input type="hidden" name="adimg" id="adimg-input">
+            <input value="${addemo.adimg}" type="hidden" name="adimg" id="adimg-input">
         </td>
         </tr>
     </table>
@@ -42,19 +43,12 @@
     <tr>
         <td>广告图片：</td>
         <td>
-            <div id="show-img"></div>
+            <div id="show-img"><img src="${addemo.adimg}" width="200px" height="200px"></div>
             <form action="<%=request.getContextPath()%>/AD/upload" method="post" enctype="multipart/form-data" id="upImg-form">
                 <input type="file" name="test"/><input type="button" value="确定上传" onclick="upImg()"/>
 
             </form>
         </td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">
-            <button type="button" onclick="addAD()" class="btn btn-default">新增</button>&nbsp&nbsp&nbsp
-            <%--<button type="reset" onclick="closeTabs()" class="btn btn-default">清空</button>--%>
-        </td>
-
     </tr>
 </table>
 

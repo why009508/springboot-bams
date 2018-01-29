@@ -27,13 +27,13 @@
     </form>
 </center>
 <div>
-    <table id="ad-table" ></table>
+    <table id="essay-table" ></table>
 </div>
 
 <script type="text/javascript">
 
     function search(){
-        $("#ad-table").bootstrapTable("refresh",{'pageNumber':1});
+        $("#essay-table").bootstrapTable("refresh",{'pageNumber':1});
     }
 
     $(function(){
@@ -42,127 +42,116 @@
             format: 'yyyy-mm-dd'
         });
 
-        $("#ad-table").bootstrapTable({
-            url:"<%=request.getContextPath()%>/AD/queryAD",
-            striped: true,//隔行变色
-            showColumns:true,//是否显示 内容列下拉框
-            showPaginationSwitch:true,//是否显示 分页工具栏
-            minimumCountColumns:1,//最小留下一个
-            showRefresh:true,//显示刷新按钮
-            showToggle:true,//显示切换视图
-            /* search:true,//是否显示搜索框 */
-            searchOnEnterKey:true,//设置为 true时，按回车触发搜索方法，否则自动触发搜索方法
-            pagination:true,//开启分页
-            paginationLoop:true,//开启分页无限循环
-            pageNumber:1,//当前页数
-            pageSize:20,//每页条数
-            pageList:[1,2,3,4],
-            sidePagination:"server",//
-            method:'post',//发送请求的方式
-            contentType:"application/x-www-form-urlencoded",//必须的否则条件查询时会乱码
-            queryParams:function(params){
-//    	     	console.info(params.search);
-//    	            var name= $("#empName").val();
-//    	             var sex = $("#sex").val();
-//    	             alert(name+","+sex);
-//    	             return 的数据 是传递到  action类中的参数
-
-                var str = params.search;
-                return {
-
-                    /*searchval:$("#searchval").val(),
-                    bookname:$("#bookname").val(),
-                    bookwriter:$("#bookwriter").val(),
-                    booktype:$("#booktype").val(),*/
-                    page:this.pageNumber,//当前页
-                    rows:this.pageSize //每页条数
-                }
-            },
-            columns: [
-                {
-                    title: '',
-                    width: 20,
-                    formatter:function(value,row,index){
-                        return "<input type='checkbox' value='"+row.bookid+"' name='che'/>";
-                    },
-                    align: 'center',
-                    valign: 'middle',
-                },{
-                    field: 'adid',
-                    title: '广告编号',
-                    width: 20,
-                    align: 'center',
-                    valign: 'middle',
-                },{
-                    field: 'adname',
-                    title: '广告名',
-                    width: 100,
-                    align: 'center',
-                    valign: 'middle',
-                },{
-                    field: 'adtext',
-                    title: '广告内容',
-                    width: 100,
-                    align: 'center',
-                    valign: 'middle',
-                },{
-                    field: 'adstatus',
-                    title: '广告状态',
-                    width: 100,
-                    align: 'center',
-                    valign: 'middle',
-                    formatter:function(value,row,index){
-                        if(row.adstatus==1){
-                            return "广告正在显示";
+        $("#essay-table").bootstrapTable({
+            url:"<%=request.getContextPath()%>/Essay/queryEssay",
+            method:"post",
+            striped: true,  	// 斑马线效果     默认false
+            //只允许选中一行
+            singleSelect:true,
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect:true,
+            showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+            cardView: false, 					//是否显示详细视图
+            // 自定义的主键ID
+            uniqueId: "esid",                 //每一行的唯一标识，一般为主键列
+            showColumns: true,                  //是否显示所有的列
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,     //  最少留两列
+            detailView: false,                  //是否显示父子表
+            //发送到服务器的数据编码类型
+            contentType:'application/x-www-form-urlencoded;charset=UTF-8',   //数据编码纯文本  offset=0&limit=5
+            toolbar:'#tabToolBar',   //  工具定义位置
+            columns:[
+                {field:'chk',title:'选项框',width:50,
+                    formatter:function(value,row,index){   //  格式化  当前单元格内容
+                        //注意value='"+row.esid+"'
+                        return  "<input type='checkbox' value='"+row.esid+"' name='chk'/>";
+                    }
+                },
+                {field:'esid',title:'编号',width:100},
+                {field:'estitle',title:'标题',width:100},
+                {field:'fullname',title:'作者',width:100},
+                {field:'escontent',title:'内容',width:100},
+                {field:'esimg',title:'对应图片',width:100,
+                    formatter:function(value,row,index){//value 当前字段值  row当前行的数据  index当前行
+                        return "<img  class='img-responsive img-round'   width='100' heigth='100' src='<%=request.getContextPath()%>/"+value+"'/>";
+                    }
+                },
+                {field:'estime',title:'提交时间',width:100},
+                {field:'pictitle',title:'所属话题',width:100},
+                {field:'statue',title:'文章状态',width:100,
+                    formatter:function(value,row,index){//value 当前字段值  row当前行的数据  index当前行
+                        if(value==0){
+                            return "未审核";
+                        }else if(value==1){
+                            return "已审核";
                         }else{
-                            return "没有显示"
+                            return "bug";
                         }
 
-                    },
-
-                },{
-                    field: 'adimg',
-                    title: '广告图片',
-                    width: 100,
-                    align: 'center',
-                    valign: 'middle',
-                    formatter:function(value,row,index){
-                        return "<img src=\""+row.adimg+"\" width=\"100px\" height=\"50px\">"
-                    },
-
+                    }
                 }, {
-                    field:'adid',
-                    title: '操作',
-                    width: 100,
+                    field:'promote',
+                    title: '是否推广',
+                    width: 60,
                     align: 'center',
                     valign: 'middle',
                     formatter:function(value,row,index){
-                        return actionFormatter(row.adid);
+                        var name = row.estitle;
+                        if(row.promote==1){
+                            return "<input type='button' value='推广' onclick='proEssay("+row.esid+",&quot"+name+"&quot)'/>";
+                        }else if(row.promote==2){
+                            return "<input type='button' value='取消推广' onclick='cancelPromote("+row.esid+",&quot"+name+"&quot)'/>";
+                        }
+                        return "";
                     },
 
-                }, ]
-        })
+                }
+
+            ],
+            //传递参数（*）
+            queryParams: function(params) {
+                // 获取当前页和每页条数
+                dataSize = params.limit;
+                dataStart = params.offset+1;
+                var whereParams = {
+                    /*
+                        分页  自定义的参数         默认传 limit（展示几条）    offset（从第几条开始    起始条数）
+                    */
+                    "pageSize":params.limit,
+                    "start":params.offset,
+                    /*"clearName":$("#proName").val(),
+                    "clearName":params.search,//精确搜索产品名称*/
+                }
+                return whereParams;
+            },
+            //前台--排序字段
+            //sortName:'proPrice',
+            //sortOrder:'desc',
+            //前台--搜索框
+            search:true,
+            //启动回车键做搜索功能
+            searchOnEnterKey:true,
+            //分页方式   后台请求的分页方式
+            sidePagination:'server',
+            pagination: true,                   //是否显示分页（*）
+            pageNum: 1,                       //每页的记录行数（*）
+            pageSize: 3,                       //每页的记录行数（*）
+            pageList: [3, 6, 9,12],        //可供选择的每页的行数（*）
+        });
     })
 
-    function actionFormatter(value, row, index) {
-        var id = value;
-        var result = "";
-        result += "<a href='javascript:;' class='btn btn-xs green' onclick=\"EditViewById('" + id + "', view='view')\" title='查看'><span class='glyphicon glyphicon-search'></span></a>&nbsp&nbsp&nbsp";
-        result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"EditViewById('" + id + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a>&nbsp&nbsp&nbsp";
-        result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"deleteAD('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
 
-        return result;
-    }
 
-    function deleteAD(id){
-        var r=confirm("确定要删除id为"+id+"的广告吗？");
+    function proEssay(id,name){
+        var r=confirm("确定要推广id为"+id+",标题为"+name+"的文章吗？");
         if(r==true){
             $.ajax({
-                url:"<%=basePath%>/AD/deleteAD",
+                url:"<%=basePath%>/Promote/proEssay",
                 type : "post",
-                data:{"adid":id},
+                data:{"esid":id},
                 success : function(data) {
-                    alert("删除成功");
+                    alert("推广成功");
                     search();
                 }
             })
@@ -170,38 +159,20 @@
 
     }
 
-    //修改
-    function EditViewById(id){
-        BootstrapDialog.show({
-            title: '修改',
-            message: $('<div style="height: 300px"></div>').load('<%=request.getContextPath()%>/AD/toEditAD?id='+id),
-            buttons: [{
-                label: '修改',
-                action: function(dialog) {
-
-                    /*$.ajax({
-                        url:'<%=request.getContextPath()%>/Book/updateBook.do',
-                        type:"post",
-                        data:$("#update-form").serialize(),
-                        dataType:"json",
-                        success:function(){
-                            alert("成功");
-                            $("#stu-table").bootstrapTable("refresh",{'pageNumber':1});
-                            $("#my-stu-table").bootstrapTable("refresh",{'pageNumber':1});
-                            dialog.close();
-                        }
-
-                    })*/
+    function cancelPromote(id,name){
+        var r=confirm("确定要取消id为"+id+",标题为"+name+"的文章的推广吗？");
+        if(r==true){
+            $.ajax({
+                url:"<%=basePath%>/Promote/cancelPromote",
+                type : "post",
+                data:{"esid":id},
+                success : function(data) {
+                    alert("取消成功");
+                    search();
                 }
-            }, {
-                label: '取消',
-                action: function(dialog) {
-                    dialog.close();
-                    //更改弹框标题
-//                     dialog.setTitle('Title 2');
-                }
-            }]
-        });
+            })
+        }
+
     }
 
 </script>

@@ -12,4 +12,6 @@ public interface ADService {
     int deleteAD(AD ad);
 
     int updateAD(AD ad);
+
+    AD queryADById(AD ad);
 }

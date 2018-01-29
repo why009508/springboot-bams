@@ -19,6 +19,8 @@ public class Essay {
     private String esimg;//图片封面
 
     private Integer statue;//状态字段 statue. 1=已审核，0 = 未审核
+
+    private Integer promote; //1没有推广 2已经推广
     //业务字段
     private String fullname;//作者昵称
     private String pictitle;//话题表标题
@@ -103,6 +105,15 @@ public class Essay {
 
     public void setStatue(Integer statue) {
         this.statue = statue;
+    }
+
+    public Integer getPromote() {
+        return promote;
+    }
+
+    public Essay setPromote(Integer promote) {
+        this.promote = promote;
+        return this;
     }
 
     @Override

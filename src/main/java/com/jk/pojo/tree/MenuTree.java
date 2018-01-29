@@ -13,64 +13,59 @@ public class MenuTree {
 
     private String closed;
 
-    /*业务字段*/
-    private String href;
-
-    public String getHref() {
-        return href;
-    }
-
-    public void setHref(String href) {
-        this.href = href;
-    }
+    private List<MenuTree> nodes;
 
     public Integer getId() {
         return id;
     }
 
-    private List<MenuTree> nodes;
-
-    public void setId(Integer id) {
+    public MenuTree setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text == null ? null : text.trim();
+    public MenuTree setText(String text) {
+        this.text = text;
+        return this;
     }
 
     public Integer getPid() {
         return pid;
     }
 
-    public void setPid(Integer pid) {
+    public MenuTree setPid(Integer pid) {
         this.pid = pid;
+        return this;
     }
 
     public String getHref() {
         return href;
     }
 
-    public void setHref(String href) {
+    public MenuTree setHref(String href) {
         this.href = href;
+        return this;
     }
 
     public String getClosed() {
         return closed;
     }
 
-    public void setClosed(String closed) {
-        this.closed = closed == null ? null : closed.trim();
+    public MenuTree setClosed(String closed) {
+        this.closed = closed;
+        return this;
     }
 
     public List<MenuTree> getNodes() {
         return nodes;
     }
 
-    public void setNodes(List<MenuTree> nodes) {
+    public MenuTree setNodes(List<MenuTree> nodes) {
         this.nodes = nodes;
+        return this;
     }
 }

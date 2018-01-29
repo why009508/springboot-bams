@@ -45,4 +45,10 @@ public class IADService implements ADService {
         int b = aDMapper.updateAD(ad);
         return b;
     }
+
+    @Override
+    public AD queryADById(AD ad) {
+        AD addemo = aDMapper.queryADById(ad.getAdid());
+        return addemo;
+    }
 }

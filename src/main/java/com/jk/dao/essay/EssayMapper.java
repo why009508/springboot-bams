@@ -36,8 +36,8 @@ public interface EssayMapper {
      * @param essay
      * @return
      */
-    @Select("SELECT esid,estitle,escontent,estime,esimg,statue,pictitle as pictitle,username as fullname\n" +
-            " FROM (SELECT e.`esid`,e.`estitle`,e.`escontent`,e.`estime`,e.`esimg`,e.`statue`,e.`pid` top , u.`username` \n" +
+    @Select("SELECT esid,estitle,escontent,estime,esimg,statue,promote,pictitle as pictitle,username as fullname\n" +
+            " FROM (SELECT e.`esid`,e.`estitle`,e.`escontent`,e.`estime`,e.`esimg`,e.`statue`,e.`promote`,e.`pid` top , u.`username` \n" +
             "\tFROM essay e INNER JOIN users u\n" +
             "\tON e.`esuid` =u.`id` )n INNER JOIN topic t\n" +
             "ON n.top = t.`picid`  limit #{start},#{pageSize}")

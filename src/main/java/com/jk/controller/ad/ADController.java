@@ -93,7 +93,9 @@ public class ADController {
 
 
     @RequestMapping("toEditAD")
-    public String toEditAD(){
+    public String toEditAD(AD ad,HttpServletRequest request){
+        AD addemo = aDService.queryADById(ad);
+        request.setAttribute("addemo",addemo);
         return "../ad/editAD";
     }
 

@@ -120,6 +120,7 @@
                     align: 'center',
                     valign: 'middle',
                     formatter:function(value,row,index){
+
                         return actionFormatter(row.id);
                     },
 
@@ -183,7 +184,7 @@
                         dataType:"json",
                         success:function(){
                             alert("成功");
-                            $("#menu-table").bootstrapTable("refresh",{'pageNumber':1});
+                            search();
                             dialog.close();
                         }
 
