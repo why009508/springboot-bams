@@ -9,11 +9,21 @@ public class MenuTree {
 
     private Integer pid;
 
-    private String href;
+    private String url;
 
     private String closed;
 
     private List<MenuTree> nodes;
+    /*业务字段*/
+    private String href;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public Integer getId() {
         return id;

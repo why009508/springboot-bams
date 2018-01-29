@@ -64,7 +64,8 @@
     <script src="<%=request.getContextPath()%>/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
     <!-- Bootstrap -->
     <script src="<%=request.getContextPath()%>/js/bootstrap.min.js" type="text/javascript"></script>
-
+    <!-- My97 -->
+    <script type="text/javascript" src="<%=path%>/My97/My97DatePicker/WdatePicker.js"></script>
 
     <!-- bootStrap TreeView -->
     <script src="<%=request.getContextPath() %>/js/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>

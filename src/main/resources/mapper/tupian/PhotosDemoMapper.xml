@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.tupian.PhotosDemoMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.pojo.tupian.PhotosDemo" >
+    <id column="phoid" property="phoid" jdbcType="INTEGER" />
+    <result column="phourl" property="phourl" jdbcType="VARCHAR" />
+    <result column="photime" property="photime" jdbcType="DATE" />
+    <result column="phoname" property="phoname" jdbcType="VARCHAR" />
+    <result column="pbeii" property="pbeii" jdbcType="INTEGER" />
+    <result column="pbeiv" property="pbeiv" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    phoid, phourl, photime, phoname, pbeii, pbeiv
+  </sql>
+
+  <update id="updPizhunp">
+    update photos SET pbeii = 1 where phoid=#{phoid}
+  </update>
+
+  <update id="updnoPizhunp">
+    update photos SET pbeii = 3 where phoid=#{phoid}
+  </update>
+
+  <select id="queryTotal" resultType="long" parameterType="com.jk.pojo.tupian.PhotosDemo">
+    select count(*) from photos where 1=1
+  </select>
+
+  <select id="queryTupian" resultMap="BaseResultMap">
+    select * from photos where 1=1
+    limit #{start},#{end}
+  </select>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from photos
+    where phoid = #{phoid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from photos
+    where phoid = #{phoid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.pojo.tupian.PhotosDemo" >
+    insert into photos (phoid, phourl, photime, 
+      phoname, pbeii, pbeiv
+      )
+    values (#{phoid,jdbcType=INTEGER}, #{phourl,jdbcType=VARCHAR}, #{photime,jdbcType=DATE}, 
+      #{phoname,jdbcType=VARCHAR}, #{pbeii,jdbcType=INTEGER}, #{pbeiv,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.pojo.tupian.PhotosDemo" >
+    insert into photos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="phoid != null" >
+        phoid,
+      </if>
+      <if test="phourl != null" >
+        phourl,
+      </if>
+      <if test="photime != null" >
+        photime,
+      </if>
+      <if test="phoname != null" >
+        phoname,
+      </if>
+      <if test="pbeii != null" >
+        pbeii,
+      </if>
+      <if test="pbeiv != null" >
+        pbeiv,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="phoid != null" >
+        #{phoid,jdbcType=INTEGER},
+      </if>
+      <if test="phourl != null" >
+        #{phourl,jdbcType=VARCHAR},
+      </if>
+      <if test="photime != null" >
+        #{photime,jdbcType=DATE},
+      </if>
+      <if test="phoname != null" >
+        #{phoname,jdbcType=VARCHAR},
+      </if>
+      <if test="pbeii != null" >
+        #{pbeii,jdbcType=INTEGER},
+      </if>
+      <if test="pbeiv != null" >
+        #{pbeiv,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.pojo.tupian.PhotosDemo" >
+    update photos
+    <set >
+      <if test="phourl != null" >
+        phourl = #{phourl,jdbcType=VARCHAR},
+      </if>
+      <if test="photime != null" >
+        photime = #{photime,jdbcType=DATE},
+      </if>
+      <if test="phoname != null" >
+        phoname = #{phoname,jdbcType=VARCHAR},
+      </if>
+      <if test="pbeii != null" >
+        pbeii = #{pbeii,jdbcType=INTEGER},
+      </if>
+      <if test="pbeiv != null" >
+        pbeiv = #{pbeiv,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where phoid = #{phoid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.pojo.tupian.PhotosDemo" >
+    update photos
+    set phourl = #{phourl,jdbcType=VARCHAR},
+      photime = #{photime,jdbcType=DATE},
+      phoname = #{phoname,jdbcType=VARCHAR},
+      pbeii = #{pbeii,jdbcType=INTEGER},
+      pbeiv = #{pbeiv,jdbcType=VARCHAR}
+    where phoid = #{phoid,jdbcType=INTEGER}
+  </update>
+</mapper>

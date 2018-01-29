@@ -1,0 +1,9 @@
+1.在页面引入WdatePicker.js
+<script type="text/javascript" src="<%=path%>/My97/My97DatePicker/WdatePicker.js">
+</script>
+2.使用My97的input框写法：
+<input  class="Wdate"  type="text"  onClick="WdatePicker()">
+<input  type="text"   class="Wdate"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"      />//显示时分秒
+3.区间查询（限制最大不能超过多少，以及大的不能比小的小...）
+<input id="d4311" class="Wdate" type="text" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'d4312\')||\'2030-10-01\'}'})"/> 
+<input id="d4312" class="Wdate" type="text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'2030-10-01'})"/>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.user.AnchorMapper" >
+    <select id="queryIntegralCount" resultType="long">
+        select count(*) from anchor where 1=1
+    </select>
+    <!--   分页查询 -->
+    <select id="queryAnchorByPage"  resultType="com.jk.pojo.user.Anchor" >
+        select * from anchor where 1=1
+        limit #{s},#{e}
+    </select>
+    <delete id="deleteAnchor">
+        delete from anchor where anid=#{anid}
+    </delete>
+
+    <!--回显-->
+
+    <select id="queryAnchorById" resultType="com.jk.pojo.user.Anchor">
+        select * from anchor where anid = #{anid}
+    </select>
+    <!--修改-->
+    <update id="updateAnchor" parameterType="com.jk.pojo.user.Anchor" >
+        update anchor set
+        anname= #{anname},
+        annum= #{annum},
+        anusername= #{anusername},
+        anpass = #{anpass}
+        where anid=#{anid}
+    </update>
+    <!--回显-->
+    <select id="plQueryAnchor" resultType="com.jk.pojo.user.Anchor">
+        select * from anchor where anid = #{anid}
+    </select>
+    <!-- 批量修改-->
+    <update id="updatePlAnchor">
+        update anchor set anpass =#{p} where anid =#{m}
+    </update>
+    <!--新增主播-->
+    <insert id="addAnchor">
+        insert into anchor(anname,annum,anusername,anpass)values(#{anname},#{annum},#{anusername},#{anpass})
+    </insert>
+</mapper>

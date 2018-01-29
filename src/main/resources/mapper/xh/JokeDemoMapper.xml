@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.xh.JokeDemoMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.pojo.xh.JokeDemo" >
+    <id column="joid" property="joid" jdbcType="INTEGER" />
+    <result column="jotitle" property="jotitle" jdbcType="VARCHAR" />
+    <result column="jotime" property="jotime" jdbcType="DATE" />
+    <result column="jocontent" property="jocontent" jdbcType="VARCHAR" />
+    <result column="jotype" property="jotype" jdbcType="VARCHAR" />
+    <result column="juid" property="juid" jdbcType="INTEGER" />
+    <result column="beii" property="beii" jdbcType="INTEGER" />
+    <result column="beiv" property="beiv" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    joid, jotitle, jotime, jocontent, jotype, juid, beii, beiv
+  </sql>
+
+  <update id="updPizhun">
+    update joke SET beii = 1 where joid=#{joid}
+  </update>
+
+  <update id="updnoPizhun">
+    update joke SET beii = 3 where joid=#{joid}
+  </update>
+
+  <select id="toUpdXhua" resultMap="BaseResultMap" parameterType="com.jk.pojo.xh.JokeDemo">
+    select * from joke where joid = #{joid}
+
+  </select>
+
+  <delete id="delXiaoh">
+    delete from joke where joid = #{joid}
+
+  </delete>
+
+  <select id="queryTotal" resultType="long" parameterType="com.jk.pojo.xh.JokeDemo">
+    select count(*) from joke where 1=1
+
+    <if test="jotitle !='' and jotitle !=null">
+      and jotitle like '%${jotitle}%'
+    </if>
+
+  </select>
+
+  <select id="queryXh" resultMap="BaseResultMap">
+    select * from joke where 1=1
+
+    <if test="joke.jotitle !='' and joke.jotitle !=null">
+      and jotitle like '%${joke.joid}%'
+    </if>
+    limit #{start},#{end}
+  </select>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from joke
+    where joid = #{joid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from joke
+    where joid = #{joid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.pojo.xh.JokeDemo" >
+    insert into joke (joid, jotitle, jotime, 
+      jocontent, jotype, juid, 
+      beii, beiv)
+    values (#{joid,jdbcType=INTEGER}, #{jotitle,jdbcType=VARCHAR}, #{jotime,jdbcType=DATE}, 
+      #{jocontent,jdbcType=VARCHAR}, #{jotype,jdbcType=VARCHAR}, #{juid,jdbcType=INTEGER}, 
+      #{beii,jdbcType=INTEGER}, #{beiv,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.pojo.xh.JokeDemo" >
+    insert into joke
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="joid != null" >
+        joid,
+      </if>
+      <if test="jotitle != null" >
+        jotitle,
+      </if>
+      <if test="jotime != null" >
+        jotime,
+      </if>
+      <if test="jocontent != null" >
+        jocontent,
+      </if>
+      <if test="jotype != null" >
+        jotype,
+      </if>
+      <if test="juid != null" >
+        juid,
+      </if>
+      <if test="beii != null" >
+        beii,
+      </if>
+      <if test="beiv != null" >
+        beiv,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="joid != null" >
+        #{joid,jdbcType=INTEGER},
+      </if>
+      <if test="jotitle != null" >
+        #{jotitle,jdbcType=VARCHAR},
+      </if>
+      <if test="jotime != null" >
+        #{jotime,jdbcType=DATE},
+      </if>
+      <if test="jocontent != null" >
+        #{jocontent,jdbcType=VARCHAR},
+      </if>
+      <if test="jotype != null" >
+        #{jotype,jdbcType=VARCHAR},
+      </if>
+      <if test="juid != null" >
+        #{juid,jdbcType=INTEGER},
+      </if>
+      <if test="beii != null" >
+        #{beii,jdbcType=INTEGER},
+      </if>
+      <if test="beiv != null" >
+        #{beiv,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.pojo.xh.JokeDemo" >
+    update joke
+    <set >
+      <if test="jotitle != null" >
+        jotitle = #{jotitle,jdbcType=VARCHAR},
+      </if>
+      <if test="jotime != null" >
+        jotime = #{jotime,jdbcType=DATE},
+      </if>
+      <if test="jocontent != null" >
+        jocontent = #{jocontent,jdbcType=VARCHAR},
+      </if>
+      <if test="jotype != null" >
+        jotype = #{jotype,jdbcType=VARCHAR},
+      </if>
+      <if test="juid != null" >
+        juid = #{juid,jdbcType=INTEGER},
+      </if>
+      <if test="beii != null" >
+        beii = #{beii,jdbcType=INTEGER},
+      </if>
+      <if test="beiv != null" >
+        beiv = #{beiv,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where joid = #{joid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.pojo.xh.JokeDemo" >
+    update joke
+    set jotitle = #{jotitle,jdbcType=VARCHAR},
+      jotime = #{jotime,jdbcType=DATE},
+      jocontent = #{jocontent,jdbcType=VARCHAR},
+      jotype = #{jotype,jdbcType=VARCHAR},
+      juid = #{juid,jdbcType=INTEGER},
+      beii = #{beii,jdbcType=INTEGER},
+      beiv = #{beiv,jdbcType=VARCHAR}
+    where joid = #{joid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.tsjy.ComplaintDemoMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.pojo.tsjy.ComplaintDemo" >
+    <id column="comid" property="comid" jdbcType="INTEGER" />
+    <result column="cuid" property="cuid" jdbcType="INTEGER" />
+    <result column="commsg" property="commsg" jdbcType="VARCHAR" />
+    <result column="comtime" property="comtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    comid, cuid, commsg, comtime
+  </sql>
+
+  <delete id="delTsjy">
+    delete from complaint where comid = #{comid}
+
+  </delete>
+
+  <select id="queryTotal" resultType="long" parameterType="com.jk.pojo.tsjy.ComplaintDemo">
+    select count(*) from complaint where 1=1
+
+  </select>
+
+  <select id="queryTsjy" resultMap="BaseResultMap">
+    select * from complaint where 1=1
+    limit #{start},#{end}
+  </select>
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from complaint
+    where comid = #{comid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from complaint
+    where comid = #{comid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.pojo.tsjy.ComplaintDemo" >
+    insert into complaint (comid, cuid, commsg, 
+      comtime)
+    values (#{comid,jdbcType=INTEGER}, #{cuid,jdbcType=INTEGER}, #{commsg,jdbcType=VARCHAR}, 
+      #{comtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.pojo.tsjy.ComplaintDemo" >
+    insert into complaint
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="comid != null" >
+        comid,
+      </if>
+      <if test="cuid != null" >
+        cuid,
+      </if>
+      <if test="commsg != null" >
+        commsg,
+      </if>
+      <if test="comtime != null" >
+        comtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="comid != null" >
+        #{comid,jdbcType=INTEGER},
+      </if>
+      <if test="cuid != null" >
+        #{cuid,jdbcType=INTEGER},
+      </if>
+      <if test="commsg != null" >
+        #{commsg,jdbcType=VARCHAR},
+      </if>
+      <if test="comtime != null" >
+        #{comtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.pojo.tsjy.ComplaintDemo" >
+    update complaint
+    <set >
+      <if test="cuid != null" >
+        cuid = #{cuid,jdbcType=INTEGER},
+      </if>
+      <if test="commsg != null" >
+        commsg = #{commsg,jdbcType=VARCHAR},
+      </if>
+      <if test="comtime != null" >
+        comtime = #{comtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where comid = #{comid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.pojo.tsjy.ComplaintDemo" >
+    update complaint
+    set cuid = #{cuid,jdbcType=INTEGER},
+      commsg = #{commsg,jdbcType=VARCHAR},
+      comtime = #{comtime,jdbcType=TIMESTAMP}
+    where comid = #{comid,jdbcType=INTEGER}
+  </update>
+</mapper>

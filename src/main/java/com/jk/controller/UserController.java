@@ -2,6 +2,7 @@ package com.jk.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.jk.pojo.User;
+import com.jk.pojo.user.Users;
 import com.jk.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -20,6 +22,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
     //跳转页面
     @RequestMapping("/toIndex")
     public String toIndex() {
@@ -42,5 +45,12 @@ public class UserController {
         return user;
     }
 
+    @RequestMapping("/login")
+    @ResponseBody
+    public Object login(Users users, HttpSession session){
+        String loginFlag = null;
+        loginFlag = userService.login(users,session);
+        return loginFlag;
+    }
 }
 
