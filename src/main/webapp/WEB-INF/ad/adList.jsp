@@ -113,9 +113,9 @@
                     valign: 'middle',
                     formatter:function(value,row,index){
                         if(row.adstatus==1){
-                            return "广告正在显示";
+                            return "<input type='button' value='广告正在显示' onclick='setADDown(\""+row.adid+"\")'/>";
                         }else{
-                            return "没有显示"
+                            return "<input type='button' value='没有显示' onclick='setADUp(\""+row.adid+"\")'/>"
                         }
 
                     },
@@ -147,8 +147,8 @@
     function actionFormatter(value, row, index) {
         var id = value;
         var result = "";
-        result += "<a href='javascript:;' class='btn btn-xs green' onclick=\"EditViewById('" + id + "', view='view')\" title='查看'><span class='glyphicon glyphicon-search'></span></a>&nbsp&nbsp&nbsp";
-        result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"EditViewById('" + id + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a>&nbsp&nbsp&nbsp";
+        result += "<a href='javascript:;' class='btn btn-xs green' onclick=\"ViewAdById('" + id + "', view='view')\" title='查看'><span class='glyphicon glyphicon-search'></span></a>&nbsp&nbsp&nbsp";
+        result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"ViewAdById('" + id + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a>&nbsp&nbsp&nbsp";
         result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"deleteAD('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
 
         return result;
@@ -171,7 +171,7 @@
     }
 
     //修改
-    function EditViewById(id){
+    function ViewAdById(id){
         BootstrapDialog.show({
             title: '修改',
             message: $('<div style="height: 500px"></div>').load('<%=request.getContextPath()%>/AD/toEditAD?adid='+id),
@@ -203,6 +203,33 @@
         });
     }
 
+    function setADUp(id){
+        var r=confirm("确定要将id为"+id+"的广告设置为显示吗？");
+        if(r==true){
+            $.ajax({
+                url:"<%=basePath%>/AD/setADUp",
+                type : "post",
+                data:{"adid":id},
+                success : function(data) {
+                    search();
+                }
+            })
+        }
+    }
+
+    function setADDown(id){
+        var r=confirm("确定要将id为"+id+"的广告取消显示吗？");
+        if(r==true){
+            $.ajax({
+                url:"<%=basePath%>/AD/setADDown",
+                type : "post",
+                data:{"adid":id},
+                success : function(data) {
+                    search();
+                }
+            })
+        }
+    }
 </script>
 </body>
 </html>

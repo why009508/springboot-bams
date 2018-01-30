@@ -14,4 +14,8 @@ public interface ADService {
     int updateAD(AD ad);
 
     AD queryADById(AD ad);
+
+    int setADUp(AD ad);
+
+    int setADDown(AD ad);
 }

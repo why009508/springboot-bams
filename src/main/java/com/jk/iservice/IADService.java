@@ -51,4 +51,16 @@ public class IADService implements ADService {
         AD addemo = aDMapper.queryADById(ad.getAdid());
         return addemo;
     }
+
+    @Override
+    public int setADUp(AD ad) {
+        int b = aDMapper.setADUp(ad.getAdid());
+        return b;
+    }
+
+    @Override
+    public int setADDown(AD ad) {
+        int b = aDMapper.setADDown(ad.getAdid());
+        return b;
+    }
 }

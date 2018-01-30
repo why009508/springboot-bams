@@ -18,4 +18,8 @@ public interface ADMapper {
     int updateAD(@Param("ad") AD ad);
 
     AD queryADById(Integer adid);
+
+    int setADUp(Integer adid);
+
+    int setADDown(Integer adid);
 }

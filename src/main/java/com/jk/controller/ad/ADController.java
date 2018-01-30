@@ -91,7 +91,19 @@ public class ADController {
         return 1;
     }
 
+    @RequestMapping("setADUp")
+    @ResponseBody
+    public Object setADUp(AD ad){
+        int b = aDService.setADUp(ad);
+        return 1;
+    }
 
+    @RequestMapping("setADDown")
+    @ResponseBody
+    public Object setADDown(AD ad){
+        int b = aDService.setADDown(ad);
+        return 1;
+    }
     @RequestMapping("toEditAD")
     public String toEditAD(AD ad,HttpServletRequest request){
         AD addemo = aDService.queryADById(ad);

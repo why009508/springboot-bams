@@ -44,4 +44,16 @@
   <select id="queryADById" resultType="com.jk.pojo.ad.AD">
     SELECT * FROM adtable WHERE adid=#{adid}
   </select>
+
+  <update id="updateAD">
+    UPDATE adtable SET adname=#{ad.adname},adtext=#{ad.adtext},adimg=#{ad.adimg} WHERE adid=#{ad.adid}
+  </update>
+
+  <update id="setADUp">
+    UPDATE adtable set adstatus = 1 WHERE adid=#{ad.adid}
+  </update>
+
+  <update id="setADDown">
+    UPDATE adtable set adstatus = 2 WHERE adid=#{ad.adid}
+  </update>
 </mapper>
