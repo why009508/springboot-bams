@@ -18,7 +18,7 @@
 </head>
 <body>
 <input type="hidden" id="username" name="username" value="${userName}">
-<input type="hidden" id="userjs" name="userjs" value="${userjs}">
+<input type="hidden" id="userjs" name="userjs" value="${loginuser.ustatic}">
 <table class="table" id="wenz-table" border="1"></table>
 
 <script type="text/javascript">

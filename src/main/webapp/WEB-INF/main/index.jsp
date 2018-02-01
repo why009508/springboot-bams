@@ -15,7 +15,7 @@
 <body class="skin-blue">
 <!-- header logo: style can be found in header.less -->
 <header class="header">
-    <a href="index.html" class="logo">
+    <a href="<%=basePath%>/toIndex" class="logo">
         <!-- Add the class icon to your logo image or logo icon to add the margining -->
         AdminLTE
     </a>
@@ -346,6 +346,8 @@
         })
         $('#left-tree').treeview({
                 data:getTreeData(),
+                onhoverColor:"#b1edff",
+                levels:1,
                 /* onNodeCollapsed:function(event,node){
                        alert("折叠了");
                    },
@@ -365,6 +367,7 @@
                                     id : node.id,
                                     title : node.text,
                                     content : data,
+
                                 })
                             }
                         })

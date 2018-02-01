@@ -11,20 +11,20 @@
     <%--<jsp:include page="/inc.jsp"></jsp:include>--%>
 </head>
 <body>
-
+<input type="hidden" id="userjs" name="userjs" value="${loginuser.ustatic}">
 
 
 
 <center>
-    ${loginuser.username}
+
     <br><br>
     <form class="form-inline" role="form">
         <div class="form-group">
             <label class="sr-only" for="name">名称</label>
             <input type="text" class="form-control" id="name" placeholder="请输入名称或编号" style="width: 250px">
         </div>
-        <button type="button" class="btn btn-default" onclick="giftSearch()">搜索</button>
-        <button type="button" class="btn btn-default" onclick="addGift()">新增</button>
+        <button type="button" class="btn btn-primary" onclick="giftSearch()">搜索</button>
+        <button type="button" id="add-gift-button" class="btn btn-info" onclick="addGift()">新增</button>
     </form>
 </center>
 <div>
@@ -38,7 +38,12 @@
     }
 
     $(function(){
-        /*queryType();*/
+        if($("#userjs").val()==2){
+            $("#add-gift-button").attr("disabled",false);
+        }else{
+            $("#add-gift-button").attr("disabled",true);
+        }
+
         $("[name='datet']").datetimepicker({
             format: 'yyyy-mm-dd'
         });
@@ -128,11 +133,20 @@
                     align: 'center',
                     valign: 'middle',
                     formatter:function(value,row,index){
-                        if(row.giftstatus==1){
-                            return "<input type='button' value='礼品有效' onclick='setGiftDown(\""+row.giftid+"\")'/>";
+                        if($("#userjs").val()==2){
+                            if(row.giftstatus==1){
+                                return "<input type='button' class=\"btn btn-success\" value='礼品有效' onclick='setGiftDown(\""+row.giftid+"\")'/>";
+                            }else{
+                                return "<input type='button' class=\"btn btn-warning\" value='礼品已失效' onclick='setGiftUp(\""+row.giftid+"\")'/>"
+                            }
                         }else{
-                            return "<input type='button' value='礼品已失效' onclick='setGiftUp(\""+row.giftid+"\")'/>"
+                            if(row.giftstatus==1){
+                                return "<input type='button' class=\"btn btn-success\" value='礼品有效' disabled onclick='setGiftDown(\""+row.giftid+"\")'/>";
+                            }else{
+                                return "<input type='button' class=\"btn btn-warning\" value='礼品已失效' disabled onclick='setGiftUp(\""+row.giftid+"\")'/>"
+                            }
                         }
+
 
                     },
 
@@ -143,7 +157,12 @@
                     align: 'center',
                     valign: 'middle',
                     formatter:function(value,row,index){
-                        return actionFormatter(row.giftid);
+                        if($("#userjs").val()==2){
+                            return actionFormatter(row.giftid);
+                        }else{
+                            return "您没有操作权限";
+                        }
+
                     },
 
                 }, ]

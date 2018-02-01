@@ -17,7 +17,7 @@
     <jsp:include page="/inc.jsp"></jsp:include>
 </head>
 <body>
-<input type="hidden" id="userjs" name="userjs" value="${userjs}">
+<input type="hidden" id="userjs" name="userjs" value="${loginuser.ustatic}">
 <table class="table" id="tupian-table" border="1"></table>
 
 <script type="text/javascript">

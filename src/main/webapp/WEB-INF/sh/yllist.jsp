@@ -17,7 +17,7 @@
     <jsp:include page="/inc.jsp"></jsp:include>
 </head>
 <body>
-<input type="hidden" id="userjs" name="userjs" value="${userjs}">
+<input type="hidden" id="userjs" name="userjs" value="${loginuser.ustatic}">
 <table class="table" id="xiao2-table" border="1"></table>
 
 <script type="text/javascript">
@@ -56,7 +56,7 @@
                     field: 'joid',
                     title: '主键',
                     idField:true,
-                    width: 10,
+                    width: 20,
                 },{
                     field: 'jotitle',
                     title: '笑话标题',

@@ -105,7 +105,7 @@
                     field: 'joid',
                     title: '主键',
                     idField:true,
-                    width: 10
+                    width: 20,
                 },{
                     field: 'jotitle',
                     title: '笑话标题',

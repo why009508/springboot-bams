@@ -75,7 +75,8 @@
             </p>
 
             <p>
-                <input type="button" onClick="logins()" value="登陆">
+
+                <button type="button" class="btn btn-success" onClick="logins()" style="width:280px">L&nbspo&nbspg&nbspi&nbspn</button>
             </p>
         </form>​
     </section>

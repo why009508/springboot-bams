@@ -16,7 +16,7 @@
 
 
 <center>
-    ${loginuser.username}
+
     <br><br>
     <form class="form-inline" role="form">
         <div class="form-group">

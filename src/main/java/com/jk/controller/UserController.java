@@ -28,12 +28,20 @@ public class UserController {
     @RequestMapping("/toIndex")
     public String toIndex(HttpSession session) {
         //在这根据当前用户ID查询他所拥有的角色返回Integer
-        session.setAttribute("userjs",1);//这里添加一个假数据假设当前用户的角色是1
+        //session.setAttribute("userjs",1);//这里添加一个假数据假设当前用户的角色是1
         //Integer aa = (Integer) session.getAttribute("userjs");
         //System.out.print(aa);
         return "../main/index";
     }
 
+    @RequestMapping("/toMain")
+    public String toMain(HttpSession session) {
+        //在这根据当前用户ID查询他所拥有的角色返回Integer
+        //session.setAttribute("userjs",1);//这里添加一个假数据假设当前用户的角色是1
+        //Integer aa = (Integer) session.getAttribute("userjs");
+        //System.out.print(aa);
+        return "../main/main";
+    }
 
     @RequestMapping("/getUserById")
     @ResponseBody

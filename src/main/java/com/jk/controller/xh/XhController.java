@@ -29,6 +29,11 @@ public class XhController {
         return "../xh/xhlist";
     }
 
+    @RequestMapping("toShXhList")
+    public String toShXhList() {
+        return "../sh/yllist";
+    }
+
     @RequestMapping("toAddXhua")
     public String toAddXhua() {
         return "../xh/xhadd";

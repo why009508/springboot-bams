@@ -11,7 +11,9 @@ public class MenuTree {
 
     private String url;
 
-    private String closed;
+    private String state;
+
+    private String icon;
 
     private List<MenuTree> nodes;
     /*业务字段*/
@@ -61,12 +63,21 @@ public class MenuTree {
         return this;
     }
 
-    public String getClosed() {
-        return closed;
+    public String getState() {
+        return state;
     }
 
-    public MenuTree setClosed(String closed) {
-        this.closed = closed;
+    public MenuTree setState(String state) {
+        this.state = state;
+        return this;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public MenuTree setIcon(String icon) {
+        this.icon = icon;
         return this;
     }
 
