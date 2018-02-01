@@ -3,6 +3,7 @@ package com.jk.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.jk.pojo.User;
 import com.jk.pojo.user.Users;
+import com.jk.pojo.users.Adminuser;
 import com.jk.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,8 @@ public class UserController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public Object login(Users users, HttpSession session){
-        String loginFlag = null;
-        loginFlag = userService.login(users,session);
+    public Object login(Adminuser adminuser, HttpSession session){
+        String loginFlag = userService.login(adminuser,session);
         return loginFlag;
     }
 }

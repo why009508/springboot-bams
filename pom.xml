@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jk</groupId>
-  <artifactId>springboot</artifactId>
+  <artifactId>springboot-bams</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>springboot Maven Webapp</name>
@@ -85,20 +85,12 @@
       <artifactId>log4j</artifactId>
       <version>1.2.17</version>
     </dependency>
-    <!--文件上传-->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-thymeleaf</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <optional>true</optional>
-    </dependency>
+
+
   </dependencies>
 
   <build>
-    <finalName>springboot</finalName>
+    <finalName>springboot-bams</finalName>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>

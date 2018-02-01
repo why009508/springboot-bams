@@ -3,6 +3,7 @@ package com.jk.dao;
 import com.jk.pojo.User;
 
 import com.jk.pojo.user.Users;
+import com.jk.pojo.users.Adminuser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,6 +23,6 @@ public interface UserMapper {
 
     User getUserById(int id);
 
-    List<Users> queryName(Users users);
+    List<Adminuser> queryName(Adminuser adminuser);
 }
 

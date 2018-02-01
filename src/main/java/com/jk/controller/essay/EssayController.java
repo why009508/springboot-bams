@@ -72,7 +72,7 @@ public class EssayController {
     @RequestMapping("/creatDialog")
     public ModelAndView creatDialog(Essay essay){
 
-        HashMap<String, Object> model=new HashMap<>();
+        HashMap<String, Object> model=new HashMap<String, Object>();
 
         if(essay !=null && essay.getEsid()!=null ){
             Essay essay2=essayService.findById(essay.getEsid());

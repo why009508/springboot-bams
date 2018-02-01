@@ -4,7 +4,7 @@
 <select id="getUserById" resultType="com.jk.pojo.User" parameterType="java.lang.Integer">
   select username,userpass from t_user WHERE userid=#{id,jdbcType=INTEGER};
 </select>
-  <select id="queryName" resultType = "com.jk.pojo.user.Users">
-  select * from users where username=#{username}
+  <select id="queryName" resultType = "com.jk.pojo.users.Adminuser">
+  select * from adminuser where uname=#{uname}
 </select>
 </mapper>
