@@ -10,17 +10,33 @@ public class Topic {
 
     private String piccontent;//对应图片
 
-    private Date starttime;//开始时间
+    private String starttime;//开始时间
 
-    private Date endtime;//结束时间
+    private String endtime;//结束时间
 
-    private Integer statue;//专题状态：1代表正常，0代表未启用，2代表失效，3代表未到开启时间。
+    private String statue;//专题状态：1代表正常，0代表未启用，2代表失效3代表未到开启时间，。
 
-    public Integer getStatue() {
+    public String getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
+    }
+
+    public String getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
+
+    public String getStatue() {
         return statue;
     }
 
-    public void setStatue(Integer statue) {
+    public void setStatue(String statue) {
         this.statue = statue;
     }
 
@@ -46,22 +62,6 @@ public class Topic {
 
     public void setPiccontent(String piccontent) {
         this.piccontent = piccontent == null ? null : piccontent.trim();
-    }
-
-    public Date getStarttime() {
-        return starttime;
-    }
-
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
-    }
-
-    public Date getEndtime() {
-        return endtime;
-    }
-
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
     }
 
     @Override
