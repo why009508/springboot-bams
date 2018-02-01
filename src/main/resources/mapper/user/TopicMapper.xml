@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.topic.TopicMapper" >
+    <insert id="addTopic">
+      insert into topic (pictitle, piccontent,
+      starttime, endtime)
+    values (#{pictitle},#{piccontent},#{starttime},#{endtime})
+    </insert>
+
+    <select id="queryTopicCount" resultType="long">
+        select count(*) from topic where tstatus = 1
+    </select>
+    <select id="queryTopicPage" resultType="com.jk.pojo.topic.Topic">
+        SELECT
+        *
+        FROM topic
+        where tstatus = 1
+        LIMIT #{s},#{e}
+    </select>
+</mapper>

@@ -1,7 +1,9 @@
 package com.jk.iservice.topic;
 
+import com.alibaba.fastjson.JSONObject;
 import com.jk.dao.topic.TopicMapper;
 import com.jk.pojo.topic.Topic;
+import com.jk.pojo.users.Adminuser;
 import com.jk.service.topic.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +35,22 @@ public class ITopicService implements TopicService {
         map.put("total",count);
 
         return map;
+    }
+
+    @Override
+    public int addTopic(Topic topic) {
+        return topicDao.addTopic(topic);
+    }
+
+    @Override
+    public JSONObject queryTopicPage(int page, int rows) {
+        long total = topicDao.queryTopicCount();
+        int start = (page-1)*rows;
+        int end = start+rows;
+        List<Topic> userlist = topicDao.queryTopicPage(start,end);
+        JSONObject json = new JSONObject();
+        json.put("total", total);
+        json.put("rows", userlist);
+        return json;
     }
 }
