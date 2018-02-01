@@ -46,5 +46,22 @@
     <delete id="deleteUsers">
         delete from userinfo where userinfoid = #{userinfoid}
     </delete>
+    <select id="queryAdminCount" resultType="long">
+        select count(*) from adminuser ad,role ro
+        where ad.rid = ro.roleid
+    </select>
+    <select id="queryAdminPage" resultType="com.jk.pojo.users.Adminuser">
+        SELECT ad.uid,ad.uname,ad.upass,ro.rolename rname FROM  adminuser ad,role ro
+        where ad.rid = ro.roleid
+    </select>
+    <select id="queryUsRo" resultType="com.jk.pojo.users.Adminuser">
+        SELECT * FROM adminuser where uid = #{uid}
+    </select>
+    <select id="queryRole" resultType="com.jk.pojo.users.Role">
+        SELECT * FROM role
+    </select>
+    <update id="updateRid">
+        update adminuser SET rid = #{rid} where uid = #{uid}
+    </update>
 
 </mapper>

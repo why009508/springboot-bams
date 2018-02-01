@@ -67,11 +67,11 @@
             <h1>享笑网内部管理系统</h1>
             <p>
                 <label for="login">Username or email</label>
-                <input type="text" name="username" placeholder="请输入用户名" required id="exampleInputEmail1s" onblur="uname()">
+                <input type="text" name="uname" placeholder="请输入用户名" required id="exampleInputEmail1s" onblur="uname()">
             </p>
             <p>
                 <label for="password">Password</label>
-                <input type="password" name='userpass' placeholder="请输入密码" required id="exampleInputPassword1" onblur="upass()">
+                <input type="password" name='upass' placeholder="请输入密码" required id="exampleInputPassword1" onblur="upass()">
             </p>
 
             <p>
@@ -107,7 +107,7 @@
                     alert("密码错误");
                 }else if(loginFlag=="yes"){
                     alert("登录成功");
-                    location.href="<%=request.getContextPath()%>/toIndex"
+                    location.href="toIndex"
                 }
             }
         })

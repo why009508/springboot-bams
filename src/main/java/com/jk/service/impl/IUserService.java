@@ -5,6 +5,7 @@ import com.jk.dao.UserMapper;
 import com.jk.pojo.User;
 
 import com.jk.pojo.user.Users;
+import com.jk.pojo.users.Adminuser;
 import com.jk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,11 @@ public class IUserService implements UserService {
     }
 
     @Override
-    public String login(Users users, HttpSession session) {
-        List<Users> list = userMapper.queryName(users);
+    public String login(Adminuser adminuser, HttpSession session) {
+        List<Adminuser> list = userMapper.queryName(adminuser);
         if(list.size()==1){
-            Users u = list.get(0);
-            if(u.getUserpass().equals(users.getUserpass())){
+            Adminuser u = list.get(0);
+            if(u.getUpass().equals(adminuser.getUpass())){
                 session.setAttribute("loginuser", u);
                 return "yes";
             }else{
