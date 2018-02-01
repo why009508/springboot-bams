@@ -18,6 +18,7 @@
 </head>
 <body>
 <input type="hidden" id="username" name="username" value="${userName}">
+<input type="hidden" id="userjs" name="userjs" value="${userjs}">
 <table class="table" id="wenz-table" border="1"></table>
 
 <script type="text/javascript">
@@ -95,10 +96,13 @@
                         if(row.ebeii==0){
                             return "<font color='green'>未批准</font>";
                         }else if(row.ebeii==1){
-                            return "<font color='green'>已批准</font>";
+                            return "<font color='green'>已批准1</font>";
+                        }else if(row.ebeii==2){
+                            return "<font color='green'>已批准2</font>";
                         }else{
                             return "<font color='red'>已作废</font>";
                         }
+
                     }
                 },{
                     field:'ebeii',
@@ -107,11 +111,18 @@
                     align: 'center',
                     idField:true,
                     formatter:function(value,row,index){
-                        if(row.ebeii==0){
-                            return "<input type='button' value='批准' onclick='tpizhun("+row.esid+")'> <input type='button' value='不批准' onclick='tbupi("+row.esid+")'>";
+                        var bbb = $("#userjs").val();
+                        // alert(bbb);
+                        if(bbb==0 && row.ebeii ==1){
+                            return "<input type='button' value='批准2' onclick='ppizhun2("+row.esid+")'> <input type='button' value='不批准' onclick='pbupi("+row.esid+")'>";
+                        }else if(bbb==0 && row.ebeii ==2){
+                            return " <input type='button' value='不批准' onclick='pbupi("+row.esid+")'>";
+                        }else if(bbb==1 && row.ebeii ==0){
+                            return "<input type='button' value='批准1' onclick='ppizhun("+row.esid+")'>";
                         }else{
                             return "";
                         }
+
 
                     }
                 }
@@ -152,7 +163,7 @@
         return dt.format("yyyy-MM-dd"); //扩展的Date的format方法(上述插件实现)
     }
 
-    function tpizhun(xx){
+    function ppizhun(xx){
         //alert(xx);
         $.ajax({
             url:'<%=request.getContextPath()%>/milu/updPizhun.do',
@@ -173,7 +184,28 @@
 
     }
 
-    function tbupi(xxx){
+    function ppizhun2(xx){
+        //alert(xx);
+        $.ajax({
+            url:'<%=request.getContextPath()%>/milu/updPizhun2.do',
+            data:{
+                esid:xx,
+            },
+            type:"post",
+            success:function(a){
+
+                if(a>0){
+                    $("#wenz-table").bootstrapTable("refresh",{'pageNumber':1});
+                }
+            },
+            error:function(){
+                alert("警告","审批报错");
+            }
+        });
+
+    }
+
+    function pbupi(xxx){
         //alert(xxx);
         $.ajax({
             url:'<%=request.getContextPath()%>/milu/updnoPizhun.do',

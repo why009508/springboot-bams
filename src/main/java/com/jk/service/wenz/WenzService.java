@@ -13,4 +13,6 @@ public interface WenzService {
     int updPizhun(EssayDemo essay);
 
     int updnoPizhun(EssayDemo essay);
+
+    int updPizhun2(EssayDemo essay);
 }

@@ -17,7 +17,7 @@
     <jsp:include page="/inc.jsp"></jsp:include>
 </head>
 <body>
-
+<input type="hidden" id="userjs" name="userjs" value="${userjs}">
 <table class="table" id="xiao2-table" border="1"></table>
 
 <script type="text/javascript">
@@ -93,7 +93,9 @@
                         if(row.beii==0){
                             return "<font color='green'>未批准</font>";
                         }else if(row.beii==1){
-                            return "<font color='green'>已批准</font>";
+                            return "<font color='green'>已批准1</font>";
+                        }else if(row.beii==2){
+                            return "<font color='green'>已批准2</font>";
                         }else{
                             return "<font color='red'>已作废</font>";
                         }
@@ -105,11 +107,18 @@
                     idField:true,
                     align: 'center',
                     formatter:function(value,row,index){
-                        if(row.beii==0){
-                            return "<input type='button' value='批准' onclick='ypizhun("+row.joid+")'> <input type='button' value='不批准' onclick='ybupi("+row.joid+")'>";
+                        var bbb = $("#userjs").val();
+                        // alert(bbb);
+                        if(bbb==0 && row.beii ==1){
+                            return "<input type='button' value='批准2' onclick='ypizhun2("+row.joid+")'> <input type='button' value='不批准' onclick='ybupi("+row.joid+")'>";
+                        }else if(bbb==0 && row.beii ==2){
+                            return " <input type='button' value='不批准' onclick='ybupi("+row.joid+")'>";
+                        }else if(bbb==1 && row.beii ==0){
+                            return "<input type='button' value='批准1' onclick='ypizhun("+row.joid+")'>";
                         }else{
                             return "";
                         }
+
                     }
                 }
             ]
@@ -153,6 +162,27 @@
         //alert(xx);
         $.ajax({
             url:'<%=request.getContextPath()%>/ylc/updPiyule.do',
+            data:{
+                joid:xx,
+            },
+            type:"get",
+            success:function(a){
+
+                if(a>0){
+                    $("#xiao2-table").bootstrapTable("refresh",{'pageNumber':1});
+                }
+            },
+            error:function(){
+                alert("警告","审批报错");
+            }
+        });
+
+    }
+
+    function ypizhun2(xx){
+        //alert(xx);
+        $.ajax({
+            url:'<%=request.getContextPath()%>/ylc/updPiyule2.do',
             data:{
                 joid:xx,
             },

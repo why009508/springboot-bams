@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.gift.GiftMapper" >
+    <select id="queryGiftCount" resultType="long">
+        select count(*) from gift where 1=1
+        <if test="giftid !='' and giftid !=null">
+            and giftid like CONCAT('%', #{giftid}, '%')
+        </if>
+        <if test="giftname !='' and giftname !=null">
+            and giftname like CONCAT('%', #{giftname}, '%')
+        </if>
+        <if test="giftstatus !='' and giftstatus !=null">
+            and giftstatus=#{giftstatus}
+        </if>
+    </select>
+
+    <select id="queryGiftPage" resultType="com.jk.pojo.gift.Gift">
+
+        select
+        *
+        from gift where 1=1
+        <if test="gift.giftid !='' and gift.giftid !=null">
+            and giftid like CONCAT('%', #{gift.giftid}, '%')
+        </if>
+        <if test="gift.giftname !='' and gift.giftname !=null">
+            and giftname like CONCAT('%', #{gift.giftname}, '%')
+        </if>
+        <if test="gift.giftstatus !='' and gift.giftstatus !=null">
+            and giftstatus=#{gift.giftstatus}
+        </if>
+
+        limit #{start},#{end}
+
+    </select>
+
+    <insert id="addGift">
+        INSERT into gift(giftname,giftprice,giftimg,giftfailtime,giftstatus) VALUES (#{giftname},#{giftprice},#{giftimg},#{giftfailtime},#{giftstatus})
+    </insert>
+
+    <update id="setGiftDown">
+        UPDATE gift SET giftstatus = 2 WHERE giftid = #{giftid}
+    </update>
+    <update id="setGiftUp">
+        UPDATE gift SET giftstatus = 1 WHERE giftid = #{giftid}
+    </update>
+
+    <delete id="deleteGift">
+        DELETE FROM gift WHERE giftid = #{giftid}
+    </delete>
+
+    <select id="queryGiftById" resultType="com.jk.pojo.gift.Gift">
+        SELECT * FROM gift WHERE giftid = #{giftid}
+    </select>
+
+    <update id="updateGift">
+        UPDATE gift SET giftname=#{giftname},giftprice=#{giftprice},giftimg=#{giftimg},giftfailtime=#{giftfailtime}
+        WHERE giftid=#{giftid}
+    </update>
+</mapper>

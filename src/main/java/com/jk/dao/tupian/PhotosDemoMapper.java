@@ -25,4 +25,6 @@ public interface PhotosDemoMapper {
     int updPizhunp(PhotosDemo photod);
 
     int updnoPizhunp(PhotosDemo photod);
+
+    int updPizhunp2(PhotosDemo photod);
 }

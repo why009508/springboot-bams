@@ -17,9 +17,9 @@
     <jsp:include page="/inc.jsp"></jsp:include>
 </head>
 <body>
-
+<input type="hidden" id="userjs" name="userjs" value="${userjs}">
 <table class="table" id="tupian-table" border="1"></table>
-aaa
+
 <script type="text/javascript">
 
     function search(){
@@ -104,10 +104,13 @@ aaa
                         if(row.pbeii==0){
                             return "<font color='green'>未批准</font>";
                         }else if(row.pbeii==1){
-                            return "<font color='green'>已批准</font>";
+                            return "<font color='green'>已批准1</font>";
+                        }else if(row.pbeii==2){
+                            return "<font color='green'>已批准2</font>";
                         }else{
                             return "<font color='red'>已作废</font>";
                         }
+
                     }
                 },{
                     field:'pbeii',
@@ -116,11 +119,18 @@ aaa
                     align: 'center',
                     idField:true,
                     formatter:function(value,row,index){
-                        if(row.pbeii==0){
-                            return "<input type='button' value='批准' onclick='ppizhun("+row.phoid+")'> <input type='button' value='不批准' onclick='pbupi("+row.phoid+")'>";
+                        var bbb = $("#userjs").val();
+                        // alert(bbb);
+                        if(bbb==0 && row.pbeii ==1){
+                            return "<input type='button' value='批准2' onclick='ppizhun2("+row.phoid+")'> <input type='button' value='不批准' onclick='pbupi("+row.phoid+")'>";
+                        }else if(bbb==0 && row.pbeii ==2){
+                            return " <input type='button' value='不批准' onclick='pbupi("+row.phoid+")'>";
+                        }else if(bbb==1 && row.pbeii ==0){
+                            return "<input type='button' value='批准1' onclick='ppizhun("+row.phoid+")'>";
                         }else{
                             return "";
                         }
+
 
                     }
                 }
@@ -165,6 +175,27 @@ aaa
         //alert(xx);
         $.ajax({
             url:'<%=request.getContextPath()%>/phtot/updPizhunp.do',
+            data:{
+                phoid:xx,
+            },
+            type:"post",
+            success:function(a){
+
+                if(a>0){
+                    $("#tupian-table").bootstrapTable("refresh",{'pageNumber':1});
+                }
+            },
+            error:function(){
+                alert("警告","审批报错");
+            }
+        });
+
+    }
+
+    function ppizhun2(xx){
+        //alert(xx);
+        $.ajax({
+            url:'<%=request.getContextPath()%>/phtot/updPizhunp2.do',
             data:{
                 phoid:xx,
             },

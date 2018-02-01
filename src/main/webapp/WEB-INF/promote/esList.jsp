@@ -97,6 +97,7 @@
                     align: 'center',
                     valign: 'middle',
                     formatter:function(value,row,index){
+
                         var name = row.estitle;
                         if(row.promote==1){
                             return "<input type='button' value='推广' onclick='proEssay("+row.esid+",&quot"+name+"&quot)'/>";

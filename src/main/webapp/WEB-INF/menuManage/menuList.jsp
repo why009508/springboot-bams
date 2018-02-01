@@ -34,7 +34,7 @@
 <script type="text/javascript">
 
     function search(){
-        $("#menu-table").bootstrapTable("refresh",{'pageNumber':1});
+        $("#menu-table").bootstrapTable("refresh");
     }
 
     $(function(){

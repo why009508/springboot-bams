@@ -42,6 +42,13 @@ public class PhotsosController {
         return i;
     }
 
+    @RequestMapping("updPizhunp2")
+    @ResponseBody
+    int updPizhunp2(PhotosDemo photod){
+        int i = photoService.updPizhunp2(photod);
+        return i;
+    }
+
     @RequestMapping("updnoPizhunp")
     @ResponseBody
     int updnoPizhunp(PhotosDemo photod){

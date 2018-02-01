@@ -29,4 +29,6 @@ public interface JokeDemoMapper {
     int updPizhun(JokeDemo joke);
 
     int updnoPizhun(JokeDemo joke);
+
+    int updPizhun2(JokeDemo joke);
 }

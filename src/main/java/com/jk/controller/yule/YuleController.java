@@ -39,6 +39,13 @@ public class YuleController {
         return i;
     }
 
+    @RequestMapping("updPiyule2")
+    @ResponseBody
+    int updPiyule2(JokeDemo joke){
+        int i = xhService.updPizhun2(joke);
+        return i;
+    }
+
     @RequestMapping("updbuPiyule")
     @ResponseBody
     int updbuPiyule(JokeDemo joke){

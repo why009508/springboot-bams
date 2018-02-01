@@ -44,6 +44,13 @@ public class WenzController {
         return i;
     }
 
+    @RequestMapping("updPizhun2")
+    @ResponseBody
+    int updPizhun2(EssayDemo essay){
+        int i = wenzService.updPizhun2(essay);
+        return i;
+    }
+
     @RequestMapping("updnoPizhun")
     @ResponseBody
     int updnoPizhun(EssayDemo essay){

@@ -42,4 +42,9 @@ public class PhotoServiceImpl implements PhotoService {
     public int updnoPizhunp(PhotosDemo photod) {
         return photosMapper.updnoPizhunp(photod);
     }
+
+    @Override
+    public int updPizhunp2(PhotosDemo photod) {
+        return photosMapper.updPizhunp2(photod);
+    }
 }

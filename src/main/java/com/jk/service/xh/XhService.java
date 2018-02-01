@@ -22,4 +22,6 @@ public interface XhService {
     int updPizhun(JokeDemo joke);
 
     int updnoPizhun(JokeDemo joke);
+
+    int updPizhun2(JokeDemo joke);
 }

@@ -19,6 +19,10 @@
     update joke SET beii = 1 where joid=#{joid}
   </update>
 
+  <update id="updPizhun2">
+    update joke SET beii = 2 where joid=#{joid}
+  </update>
+
   <update id="updnoPizhun">
     update joke SET beii = 3 where joid=#{joid}
   </update>

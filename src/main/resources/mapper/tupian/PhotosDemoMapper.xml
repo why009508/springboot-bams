@@ -17,6 +17,10 @@
     update photos SET pbeii = 1 where phoid=#{phoid}
   </update>
 
+  <update id="updPizhunp2">
+    update photos SET pbeii = 2 where phoid=#{phoid}
+  </update>
+
   <update id="updnoPizhunp">
     update photos SET pbeii = 3 where phoid=#{phoid}
   </update>

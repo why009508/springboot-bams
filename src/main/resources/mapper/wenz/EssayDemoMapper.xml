@@ -19,6 +19,10 @@
     update essay SET ebeii = 1 where esid=#{esid}
   </update>
 
+  <update id="updPizhun2">
+    update essay SET ebeii = 2 where esid=#{esid}
+  </update>
+
   <update id="updnoPizhun">
     update essay SET ebeii = 3 where esid=#{esid}
   </update>

@@ -62,4 +62,9 @@ public class XhServiceImpl implements XhService{
     public int updnoPizhun(JokeDemo joke) {
         return jokemapper.updnoPizhun(joke);
     }
+
+    @Override
+    public int updPizhun2(JokeDemo joke) {
+        return jokemapper.updPizhun2(joke);
+    }
 }

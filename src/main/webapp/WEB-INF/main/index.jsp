@@ -298,13 +298,20 @@
     <!-- Right side column. Contains the navbar and content of the page -->
     <aside class="right-side">
         <ul id="myTab" class="nav nav-tabs">
-            <li>
-                <a href="#home" data-toggle="tab"> 首页</a>
-            </li>
+            <%--<li class="active">
+                <a href="#home" data-toggle="tab">首页</a>
+            </li>--%>
+
         </ul>
+        <%--<div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+                <p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>
+            </div>
+        </div>--%>
         <!--想要打开tab页内容，需要把对应的ul和要打开的内容tab放在一个div里  -->
         <div class="tab-content"></div>
     </aside><!-- /.right-side -->
+
 </div><!-- ./wrapper -->
 <script type="text/javascript">
     function getTreeData(){
@@ -325,6 +332,18 @@
     }
 
     $(function(){
+        $.ajax({
+            url:"<%=basePath%>/toMain",
+            type : "post",
+            success : function(data) {
+                //                     				添加选项卡面板
+                $.addtabs.add({
+                    id : 0,
+                    title : "首页",
+                    content : data,
+                })
+            }
+        })
         $('#left-tree').treeview({
                 data:getTreeData(),
                 /* onNodeCollapsed:function(event,node){

@@ -13,4 +13,6 @@ public interface PhotoService {
     int updPizhunp(PhotosDemo photod);
 
     int updnoPizhunp(PhotosDemo photod);
+
+    int updPizhunp2(PhotosDemo photod);
 }

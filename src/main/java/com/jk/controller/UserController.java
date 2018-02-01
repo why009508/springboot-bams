@@ -25,14 +25,14 @@ public class UserController {
 
     //跳转页面
     @RequestMapping("/toIndex")
-    public String toIndex() {
-        System.out.print("1231312312");
+    public String toIndex(HttpSession session) {
+        //在这根据当前用户ID查询他所拥有的角色返回Integer
+        session.setAttribute("userjs",1);//这里添加一个假数据假设当前用户的角色是1
+        //Integer aa = (Integer) session.getAttribute("userjs");
+        //System.out.print(aa);
         return "../main/index";
     }
-    @RequestMapping("/see")
-    public String toSee(){
-        return "/see";
-    }
+
 
     @RequestMapping("/getUserById")
     @ResponseBody

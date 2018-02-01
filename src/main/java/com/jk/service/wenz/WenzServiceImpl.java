@@ -40,4 +40,9 @@ public class WenzServiceImpl implements WenzService {
     public int updnoPizhun(EssayDemo essay) {
         return essayMapper.updnoPizhun(essay);
     }
+
+    @Override
+    public int updPizhun2(EssayDemo essay) {
+        return essayMapper.updPizhun2(essay);
+    }
 }
