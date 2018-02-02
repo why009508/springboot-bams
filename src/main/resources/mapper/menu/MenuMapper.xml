@@ -3,14 +3,14 @@
 <mapper namespace="com.jk.dao.menu.MenuMapper" >
     <select id="queryMenuCount" resultType="long">
         select count(*) from menu where 1=1
-        <if test="menu.id !='' and menu.id !=null">
-            and id like CONCAT('%', #{menu.id}, '%')
-        </if>
         <if test="menu.text !='' and menu.text !=null">
-            and text like CONCAT('%', #{menu.text}, '%')
-        </if>
-        <if test="menu.pid !='' and menu.pid !=null">
-            and pid like CONCAT('%', #{menu.pid}, '%')
+            and( id like CONCAT('%', #{menu.text}, '%')
+
+
+            or text like CONCAT('%', #{menu.text}, '%')
+
+
+            or pid like CONCAT('%', #{menu.text}, '%'))
         </if>
     </select>
 
@@ -20,13 +20,13 @@
         *
         from menu where 1=1
         <if test="menu.id !='' and menu.id !=null">
-            and id like CONCAT('%', #{menu.id}, '%')
-        </if>
-        <if test="menu.text !='' and menu.text !=null">
-            and text like CONCAT('%', #{menu.text}, '%')
-        </if>
-        <if test="menu.pid !='' and menu.pid !=null">
-            and pid like CONCAT('%', #{menu.pid}, '%')
+            and( id like CONCAT('%', #{menu.text}, '%')
+
+
+            or text like CONCAT('%', #{menu.text}, '%')
+
+
+            or pid like CONCAT('%', #{menu.text}, '%'))
         </if>
 
         limit #{start},#{end}

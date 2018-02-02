@@ -67,11 +67,11 @@
             <h1>享笑网内部管理系统</h1>
             <p>
                 <label for="login">Username or email</label>
-                <input type="text" name="uname" placeholder="请输入用户名" required id="exampleInputEmail1s" onblur="uname()">
+                <input type="text" name="uname" placeholder="请输入用户名" required id="exampleInputEmail1s" onblur="checkNotNull()">
             </p>
             <p>
                 <label for="password">Password</label>
-                <input type="password" name='upass' placeholder="请输入密码" required id="exampleInputPassword1" onblur="upass()">
+                <input type="password" name='upass' placeholder="请输入密码" required id="exampleInputPassword1" onblur="checkPassNotNull()">
             </p>
 
             <p>
@@ -83,12 +83,12 @@
 
 </div>
 <script type="text/javascript">
-    function uname(){
+    function checkNotNull(){
         if($("#exampleInputEmail1s").val()==""){
             alert("用户名不能为空");
         }
     }
-    function upass(){
+    function checkPassNotNull(){
 
         if($("#exampleInputPassword1").val()==""){
             alert("密码不能为空");

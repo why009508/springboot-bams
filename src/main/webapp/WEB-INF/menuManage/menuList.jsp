@@ -8,7 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <jsp:include page="/inc.jsp"></jsp:include>
+
 </head>
 <body>
 
@@ -20,8 +20,8 @@
         <br><br>
         <form class="form-inline" role="form">
             <div class="form-group">
-                <label class="sr-only" for="name">名称</label>
-                <input type="text" class="form-control" id="name" placeholder="请输入名称或编号" style="width: 250px">
+                <label class="sr-only" >名称</label>
+                <input type="text" class="form-control" id="serach-box" placeholder="请输入名称或编号" style="width: 250px">
             </div>
             <button type="button" class="btn btn-default" onclick="search()">搜索</button>
             <button type="button" class="btn btn-default" onclick="toAddMenuTabs()">新增</button>
@@ -71,10 +71,7 @@
                 var str = params.search;
                 return {
 
-                    /*searchval:$("#searchval").val(),
-                    bookname:$("#bookname").val(),
-                    bookwriter:$("#bookwriter").val(),
-                    booktype:$("#booktype").val(),*/
+                    text:$("#serach-box").val(),
                     page:this.pageNumber,//当前页
                     rows:this.pageSize //每页条数
                 }

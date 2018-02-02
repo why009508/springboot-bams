@@ -23,7 +23,7 @@
             <label class="sr-only" for="name">名称</label>
             <input type="text" class="form-control" id="name" placeholder="请输入名称或编号" style="width: 250px">
         </div>
-        <button type="submit" class="btn btn-default" onclick="search()">搜索</button>
+        <button type="button" class="btn btn-default" onclick="search()">搜索</button>
     </form>
 </center>
 <div>
