@@ -12,7 +12,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
-    <jsp:include page="/inc.jsp"></jsp:include>
+    <%--<jsp:include page="/inc.jsp"></jsp:include>--%>
 </head>
 <body>
 <div id="a" style="width:450px; float:left;">

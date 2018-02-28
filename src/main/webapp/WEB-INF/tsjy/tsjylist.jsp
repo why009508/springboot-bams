@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<table class="table" id="tsjy-table" border="1"></table>
+<table class="table" id="tsjy-table" ></table>
 <script type="text/javascript">
 
     function search(){

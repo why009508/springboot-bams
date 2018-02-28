@@ -61,5 +61,13 @@ public class UserController {
     public String toLogin() {
         return "../../login";
     }
+
+
+    @RequestMapping("/toSingOut")
+    public String toSingOut(HttpSession session) {
+        session.setAttribute("loginuser", null);
+        return "../../login";
+    }
+
 }
 

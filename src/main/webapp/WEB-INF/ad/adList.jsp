@@ -113,9 +113,9 @@
                     valign: 'middle',
                     formatter:function(value,row,index){
                         if(row.adstatus==1){
-                            return "<input type='button' value='广告正在显示' onclick='setADDown(\""+row.adid+"\")'/>";
+                            return "<input type='button' class=\"btn btn-success\" value='广告正在显示' onclick='setADDown(\""+row.adid+"\")'/>";
                         }else{
-                            return "<input type='button' value='没有显示' onclick='setADUp(\""+row.adid+"\")'/>"
+                            return "<input type='button' class=\"btn btn-warning\" value='没有显示' onclick='setADUp(\""+row.adid+"\")'/>"
                         }
 
                     },

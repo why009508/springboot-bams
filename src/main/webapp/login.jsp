@@ -95,7 +95,7 @@
         }
     }
     function logins(){
-        alert("1")
+
         $.ajax({
             url:"<%=request.getContextPath()%>/login",
             type:"post",
@@ -107,7 +107,7 @@
                 }else if(loginFlag=="passno"){
                     alert("密码错误");
                 }else if(loginFlag=="yes"){
-                    alert("登录成功");
+                    //alert("登录成功");
                     location.href="toIndex"
                 }
             }

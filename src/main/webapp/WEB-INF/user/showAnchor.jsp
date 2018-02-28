@@ -1,4 +1,4 @@
-<%--
+    <%--
   Created by IntelliJ IDEA.
   User: Forever
   Date: 2018/1/19
@@ -14,7 +14,7 @@
 <html>
 <head>
     <title>主播管理</title>
-    <jsp:include page="/inc.jsp"></jsp:include>
+
 
 </head>
 <body>
@@ -78,8 +78,8 @@
                     title: '操作',
                     width: 100,
                     formatter:function (val,rowdata,rowIndex){
-                        return "<input type='button' value='修改'  onClick='updateAnchor("+rowdata.anid+")'/>"+
-                            "<input type='button' value='删除'  onClick='deleteAnchor("+rowdata.anid+")'/>";
+                        return "<input type='button' value='修改' class=\"btn btn-primary\"  onClick='updateAnchor("+rowdata.anid+")'/>"+
+                            "&nbsp&nbsp<input type='button' value='删除' class=\"btn btn-danger\"  onClick='deleteAnchor("+rowdata.anid+")'/>";
                     }
 
                 }

@@ -89,7 +89,7 @@
                     title: '操作',
                     width: 100,
                     formatter:function(value,row,index){
-                        if(static ==2){
+                        if(static != 0){
                             return "";
                         }else{
                             return"<button type='button' class='btn btn-default' onClick='role("+row.uid+")'>设置权限</button>";

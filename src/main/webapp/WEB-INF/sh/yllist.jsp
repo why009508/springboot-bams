@@ -110,11 +110,11 @@
                         var bbb = $("#userjs").val();
                         // alert(bbb);
                         if(bbb==0 && row.beii ==1){
-                            return "<input type='button' value='批准2' onclick='ypizhun2("+row.joid+")'> <input type='button' value='不批准' onclick='ybupi("+row.joid+")'>";
+                            return "<input type='button' class=\"btn btn-success\" value='批准2' onclick='ypizhun2("+row.joid+")'> <input type='button' value='不批准' onclick='ybupi("+row.joid+")'>";
                         }else if(bbb==0 && row.beii ==2){
-                            return " <input type='button' value='不批准' onclick='ybupi("+row.joid+")'>";
+                            return " <input type='button' class=\"btn btn-warning\" value='不批准' onclick='ybupi("+row.joid+")'>";
                         }else if(bbb==1 && row.beii ==0){
-                            return "<input type='button' value='批准1' onclick='ypizhun("+row.joid+")'>";
+                            return "<input type='button' class=\"btn btn-success\" value='批准1' onclick='ypizhun("+row.joid+")'>";
                         }else{
                             return "";
                         }
