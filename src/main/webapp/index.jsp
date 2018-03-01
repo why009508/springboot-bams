@@ -104,12 +104,8 @@
                         <a href="index.jsp"><img src="images/logo.jpg" alt="享笑网LOGO 征文比赛 有奖征文" /></a>
                     </div> 
                     <div class="pb-iblock pb-fl pb-nav"> 
-                        <ul> 
-                            <li><a href="index.jsp">首页</a></li>
-                            <li><a href="news.html">征文比赛</a></li> 
-                            <li><a href="pic.html">倾听世界</a></li> 
-                            <li><a href="ear.html">叫醒耳朵</a></li> 
-                            <li class="pb-nav-li-last"><a href="laugh.html">每日一笑</a></li> 
+                        <ul id="index-menu-ul">
+
                         </ul> 
                     </div> 
                     <div class="pb-iblock pb-fr pb-oths"> 
@@ -604,7 +600,35 @@
                        });
                    }
                    Sys.hide51();
+
+                   $.ajax({
+                       url:"<%=basePath%>/Menu/queryMenu",
+                       type:"post",
+                       dataType:"json",
+                       data:{},
+                       success:function(data){
+                           alert(data);
+                       }
+                   })
+
                });
+
+               function getIndexMenu(){
+                   $.ajax({
+                       url:"<%=basePath%>/FMenu/getIndexMenu",
+                       type:"post",
+                       dataType:"json",
+                       success:function(data){
+                           alert(data);
+                       }
+                   })
+
+                    /*$("#index-menu-ul").html("<li><a href=\"index.jsp\">首页</a></li>\n" +
+                        "<li><a href=\"news.html\">征文比赛</a></li> \n" +
+                        "<li><a href=\"pic.html\">倾听世界</a></li> \n" +
+                        "<li><a href=\"ear.html\">叫醒耳朵</a></li> \n" +
+                        "<li class=\"pb-nav-li-last\"><a href=\"laugh.html\">每日一笑</a></li>")*/
+               }
         </script>  
     </body>
 </html>
