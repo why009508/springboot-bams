@@ -21,6 +21,8 @@ public class Essay {
     private Integer statue;//状态字段 statue. 1=已审核，0 = 未审核
 
     private Integer promote; //1没有推广 2已经推广
+
+    private Integer ebeii;
     //业务字段
     private String fullname;//作者昵称
     private String pictitle;//话题表标题
@@ -113,6 +115,15 @@ public class Essay {
 
     public Essay setPromote(Integer promote) {
         this.promote = promote;
+        return this;
+    }
+
+    public Integer getEbeii() {
+        return ebeii;
+    }
+
+    public Essay setEbeii(Integer ebeii) {
+        this.ebeii = ebeii;
         return this;
     }
 

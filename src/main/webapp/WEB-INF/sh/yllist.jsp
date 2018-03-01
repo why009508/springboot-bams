@@ -14,7 +14,7 @@
 <html>
 <head>
     <title>娱乐列表</title>
-    <jsp:include page="/inc.jsp"></jsp:include>
+    
 </head>
 <body>
 <input type="hidden" id="userjs" name="userjs" value="${loginuser.ustatic}">

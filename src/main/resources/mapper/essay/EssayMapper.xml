@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.dao.menu.FEssayMapper">
+  <select id="getEssayList" resultType="com.jk.pojo.essay.Essay">
+
+    SELECT esid,estitle,escontent,estime,esimg,statue,promote,ebeii,pictitle as pictitle,username as fullname
+             FROM (SELECT e.`esid`,e.`estitle`,e.`escontent`,e.`estime`,e.`esimg`,e.`statue`,e.`promote`,e.`ebeii`,e.`pid` top , u.`username`
+            FROM essay e INNER JOIN users u
+            ON e.`esuid` =u.`id`)n INNER JOIN topic t
+            ON n.top = t.`picid`
+
+  </select>
+</mapper>

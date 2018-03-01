@@ -18,8 +18,8 @@
 
 </head>
 <body>
-<input type="button" value="新增" onclick="toAddAnchor()">
-<input type="button" value="批量修改密码" onclick="plUpdateAnchor()">
+<input type="button" class="btn btn-primary" value="新增" onclick="toAddAnchor()">
+<input type="button" class="btn btn-primary" value="批量修改密码" onclick="plUpdateAnchor()">
 <table class="table" id="anchor-table" border="1"></table>
 
 <script>
@@ -101,6 +101,7 @@
             dataType:"text",
             async:false,
             success:function (){
+                alert("删除成功");
                 $("#anchor-table").bootstrapTable("refresh",{'pageNumber':1});
             },
             error:function (){

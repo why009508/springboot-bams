@@ -14,7 +14,7 @@
 <html>
 <head>
     <title>文章列表</title>
-    <jsp:include page="/inc.jsp"></jsp:include>
+
 </head>
 <body>
 <input type="hidden" id="username" name="username" value="${userName}">
@@ -96,9 +96,9 @@
                         if(row.ebeii==0){
                             return "<font color='green'>未批准</font>";
                         }else if(row.ebeii==1){
-                            return "<font color='green'>已批准1</font>";
+                            return "<font color='green'>初审已批准</font>";
                         }else if(row.ebeii==2){
-                            return "<font color='green'>已批准2</font>";
+                            return "<font color='green'>终审已批准</font>";
                         }else{
                             return "<font color='red'>已作废</font>";
                         }
@@ -114,11 +114,11 @@
                         var bbb = $("#userjs").val();
                         // alert(bbb);
                         if(bbb==0 && row.ebeii ==1){
-                            return "<input type='button' class=\"btn btn-success\" value='批准2' onclick='ppizhun2("+row.esid+")'> <input type='button' value='不批准' onclick='pbupi("+row.esid+")'>";
+                            return "<input type='button' class=\"btn btn-success\" value='终审批准' onclick='ppizhun2("+row.esid+")'> <input type='button' class=\"btn btn-warning\" value='不批准' onclick='pbupi("+row.esid+")'>";
                         }else if(bbb==0 && row.ebeii ==2){
                             return " <input type='button' class=\"btn btn-warning\" value='不批准' onclick='pbupi("+row.esid+")'>";
                         }else if(bbb==1 && row.ebeii ==0){
-                            return "<input type='button' class=\"btn btn-success\" value='批准1' onclick='ppizhun("+row.esid+")'>";
+                            return "<input type='button' class=\"btn btn-success\" value='初审批准' onclick='ppizhun("+row.esid+")'>";
                         }else{
                             return "";
                         }

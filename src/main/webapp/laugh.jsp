@@ -153,7 +153,7 @@ function getBrowser()
       <a href="index.html"><img alt="享笑网LOGO 征文比赛 有奖征文" src="images/logo.jpg" /></a> 
      </div> 
      <div class="pb-iblock pb-fl pb-nav"> 
-      <ul> 
+      <ul >
        <li><a href="index.html">首页</a></li> 
        <li><a href="news.html">征文比赛</a></li> 
        <li><a href="pic.jsp">倾听世界</a></li>

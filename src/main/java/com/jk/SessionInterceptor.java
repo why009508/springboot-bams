@@ -13,7 +13,7 @@ public class SessionInterceptor implements HandlerInterceptor
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         System.out.println(request.getRequestURI());
         //登录不做拦截
-        if(request.getRequestURI().equals("/login") || request.getRequestURI().equals("/toLogin"))
+        if(request.getRequestURI().equals("/login") || request.getRequestURI().equals("/toLogin") )
         {
             return true;
         }

@@ -148,8 +148,9 @@ function getBrowser()
        <span class="">排序方式 : </span> 
        <a href="news_detail.html?-10">时间</a> 
        <a href="news_detail.html?-10?priority=score">评分</a> 
-      </div> 
-      <ul class="pb-mt30"> 
+      </div>
+
+      <ul class="pb-mt30" id="news-ul">
        <li> <a href="news_detail.html?-10-65"><img src="images/essay_10001_e27ef3b65d.jpg" class="pb-fl" alt="如果高中生谈恋爱，请善待它,征文比赛，有奖征文" /></a> 
         <dl> 
          <dt>
@@ -232,7 +233,7 @@ function getBrowser()
         </dl> </li> 
       </ul> 
       <div class="pb-mt50 pb-listpage"> 
-       <table>
+       <%--<table>
         <tbody>
          <tr>
           <td><a class="yiiPagerA on" href="news.jsp">1</a></td>
@@ -241,7 +242,7 @@ function getBrowser()
           <td><a class="yiiPagerA" href="news_detail.html??page=3">末页</a></td>
          </tr>
         </tbody>
-       </table> 
+       </table> --%>
       </div> 
      </div> 
      <!--专题章展示 end--> 
@@ -352,10 +353,10 @@ function getBrowser()
 		}
 		Sys.hide51();
         getIndexMenu();
+        getEssay();
 	});
 
-    function getIndexMenu(){
-
+	function getIndexMenu(){
         $.ajax({
             url:"<%=request.getContextPath()%>/FMenu/getIndexMenu",
             type:"post",
@@ -366,7 +367,35 @@ function getBrowser()
 
                     menuStr+="<li><a href="+data[i].url+">"+data[i].text+"</a></li>";
                 }
+
                 $("#index-menu-ul").html(menuStr);
+            }
+
+        })
+    }
+
+    function getEssay(){
+
+        $.ajax({
+            url:"<%=request.getContextPath()%>/FEssay/getEssayList",
+            type:"post",
+            dataType:"json",
+            success:function(data){
+               /* alert(data.length);*/
+                var essayStr = "";
+                for(var i=0;i<data.length;i++){
+
+                    essayStr+='<li> <a href="news_detail.html?-10-65"><img src="images/essay_10001_e27ef3b65d.jpg" class="pb-fl" alt="如果高中生谈恋爱，请善待它,征文比赛，有奖征文" /></a><dl><dt>'+
+                    '<a href="news_detail.html?-10-65">'+data[i].estitle+'</a></dt><dd class="pb-mt10">'
+                        +'<strong>作者昵称</strong> ： '
+                        +'<a href="/user-10348">'+data[i].fullname+'</a>'
+                        +'</dd><dd>'
+                        +'<strong>目前得分</strong> ： 1 </dd> <dd>'
+                        +'<strong>投稿正文</strong> ： '+data[i].escontent+'&middot;&middot;&middot;'
+                        +'</dd> </dl> </li>';
+                }
+
+                $("#news-ul").html(essayStr);
             }
 
         })
