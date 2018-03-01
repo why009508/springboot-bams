@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class FMenuController {
     private FMenuService fMenuService;
 
     @RequestMapping("getIndexMenu")
+    @ResponseBody
     public Object getIndexMenu(){
         System.out.print("主页菜单");
         List<Menu> indexMenuList = fMenuService.getIndexMenu();

@@ -6,7 +6,7 @@
 
         select
         *
-        from menu where pid=1
+        from menu where pid=0
 
     </select>
 

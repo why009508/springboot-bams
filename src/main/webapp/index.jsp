@@ -162,7 +162,7 @@
                 </script> 
                 <div style="clear:both;"></div> 
                 <div class="pb-main pb-mt20"> 
-                    <h3 class="idx-t1"> <a href="news.html" class="pb-clr1">征文比赛</a> </h3> 
+                    <h3 class="idx-t1"> <a href="news.jsp" class="pb-clr1">征文比赛</a> </h3>
                     <div class="idx-line1"> 
                     </div> 
                     <div class="idx-ycwz-1 pb-mt20 pb-after-clear"> 
@@ -314,7 +314,7 @@
                     </div> 
                     <h3 class="idx-qtsj-t pb-mt50"> 
                         <div class="inx-qtsj-line pb-fr"></div> 
-                        <div class="inx-qtsj-line pb-fl"></div> <a href="pic.html"> <span class="chn">倾听世界</span> <br /> <span class="eng">LISTEN TO THE WORLD</span> </a> </h3> 
+                        <div class="inx-qtsj-line pb-fl"></div> <a href="pic.jsp"> <span class="chn">倾听世界</span> <br /> <span class="eng">LISTEN TO THE WORLD</span> </a> </h3>
                     <div class="idx-qtsj pb-mt20 pb-after-clear"> 
                         <ul> 
                             <li> <a href="pic_detail.html?1"> <img src="images/qing_10001_7b053ee001_310.jpg" class="pb-block" style="width:200px;" alt="美女,清纯唯美写真合集" /> </a> 
@@ -410,13 +410,13 @@
                         </ul> 
                     </div> 
                     <div style="clear:both;"></div> 
-                    <h3 class="idx-t1 pb-mt50"> <a href="laugh.html" class="pb-clr1">每日一笑</a> </h3> 
+                    <h3 class="idx-t1 pb-mt50"> <a href="laugh.jsp" class="pb-clr1">每日一笑</a> </h3>
                     <div class="idx-line1"> 
                     </div> 
                     <div class="idx-mryx pb-mt20 pb-after-clear"> 
                         <div class="d1 pb-fl"> 
                             <img src="images/b_smile_left.jpg" class="pb-fl" alt="最新搞笑段子,每日一笑" /> 
-                            <a href="laugh.html" class="tle pb-fl pb-clr1">搞笑段子&nbsp;&nbsp;|&nbsp;&nbsp; <span class="pb-clr2">更多</span></a> 
+                            <a href="laugh.jsp" class="tle pb-fl pb-clr1">搞笑段子&nbsp;&nbsp;|&nbsp;&nbsp; <span class="pb-clr2">更多</span></a>
                             <ul class="pb-mt15 pb-fl pb-size-normal"> 
                                 <li> <span>.</span> <a href="/jokes-5-4758">家里的电要交电费</a> </li> 
                                 <li> <span>.</span> <a href="/jokes-5-4757">要把学校当成自己家</a> </li> 
@@ -443,7 +443,7 @@
                             <table class="pb-mt10"> 
                                 <tbody>
                                     <tr> 
-                                        <td><a href="laugh.html">各种口味</a></td> 
+                                        <td><a href="laugh.jsp">各种口味</a></td>
                                         <td><a href="/jokes-2">少儿不宜</a></td> 
                                         <td><a href="/jokes-4">超级内涵</a></td> 
                                     </tr> 
@@ -600,34 +600,29 @@
                        });
                    }
                    Sys.hide51();
+                   getIndexMenu();
 
-                   $.ajax({
-                       url:"<%=basePath%>/Menu/queryMenu",
-                       type:"post",
-                       dataType:"json",
-                       data:{},
-                       success:function(data){
-                           alert(data);
-                       }
-                   })
 
                });
 
                function getIndexMenu(){
+
                    $.ajax({
-                       url:"<%=basePath%>/FMenu/getIndexMenu",
+                       url:"<%=request.getContextPath()%>/FMenu/getIndexMenu",
                        type:"post",
                        dataType:"json",
                        success:function(data){
-                           alert(data);
+                           var menuStr = "";
+                           for(var i=0;i<data.length;i++){
+
+                               menuStr+="<li><a href="+data[i].url+">"+data[i].text+"</a></li>";
+                           }
+                           $("#index-menu-ul").html(menuStr);
                        }
+
                    })
 
-                    /*$("#index-menu-ul").html("<li><a href=\"index.jsp\">首页</a></li>\n" +
-                        "<li><a href=\"news.html\">征文比赛</a></li> \n" +
-                        "<li><a href=\"pic.html\">倾听世界</a></li> \n" +
-                        "<li><a href=\"ear.html\">叫醒耳朵</a></li> \n" +
-                        "<li class=\"pb-nav-li-last\"><a href=\"laugh.html\">每日一笑</a></li>")*/
+
                }
         </script>  
     </body>
